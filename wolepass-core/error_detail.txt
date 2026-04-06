@@ -1,0 +1,18 @@
+﻿=== test_resident_can_generate_pass_with_phone ===
+Tests\Feature\VisitApiTest::test_resident_can_generate_pass_with_phone
+BadMethodCallException: Call to undefined method App\Models\User::withAccessToken()
+
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:36
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:2372
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\sanctum\src\Sanctum.php:82
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php:27
+=== test_resident_can_generate_frictionless_dispatch_pass ===
+Tests\Feature\VisitApiTest::test_resident_can_generate_frictionless_dispatch_pass
+BadMethodCallException: Call to undefined method App\Models\User::withAccessToken()
+
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:36
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:2372
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\sanctum\src\Sanctum.php:82
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php:78

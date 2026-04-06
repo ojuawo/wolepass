@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Tests\Feature\VisitApiTest" file="C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php" tests="2" assertions="0" errors="2" failures="0" skipped="0" time="0.639481">
+    <testcase name="test_resident_can_generate_pass_with_phone" file="C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php" line="17" class="Tests\Feature\VisitApiTest" classname="Tests.Feature.VisitApiTest" assertions="0" time="0.618959">
+      <error type="BadMethodCallException">Tests\Feature\VisitApiTest::test_resident_can_generate_pass_with_phone&#13;
+BadMethodCallException: Call to undefined method App\Models\User::withAccessToken()
+&#13;
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:36
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:2372
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\sanctum\src\Sanctum.php:82
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php:27</error>
+    </testcase>
+    <testcase name="test_resident_can_generate_frictionless_dispatch_pass" file="C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php" line="68" class="Tests\Feature\VisitApiTest" classname="Tests.Feature.VisitApiTest" assertions="0" time="0.020522">
+      <error type="BadMethodCallException">Tests\Feature\VisitApiTest::test_resident_can_generate_frictionless_dispatch_pass&#13;
+BadMethodCallException: Call to undefined method App\Models\User::withAccessToken()
+&#13;
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:67
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Support\Traits\ForwardsCalls.php:36
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Model.php:2372
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\vendor\laravel\sanctum\src\Sanctum.php:82
+C:\Users\Ojuaw\OneDrive\Documents\Projects\Anti Gravity Projects\Visitor Management\wolepass-core\tests\Feature\VisitApiTest.php:78</error>
+    </testcase>
+  </testsuite>
+</testsuites>
