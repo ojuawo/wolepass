@@ -15,6 +15,11 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'subscription.active' => \App\Http\Middleware\EnforceActiveSubscription::class,
         ]);
+
+        // Allow the Vercel frontend (and localhost dev) to call the API
+        $middleware->api(prepend: [
+            \Illuminate\Http\Middleware\HandleCors::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

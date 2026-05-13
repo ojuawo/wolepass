@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://wolepass.komunisconcept.org.ng/wolepass_api/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://wolepass.komunisconcept.org.ng/api',
 });
 
 api.interceptors.request.use(
