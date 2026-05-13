@@ -19,8 +19,13 @@ const Login = () => {
     setError('');
 
     try {
-      await login(email, password);
-      navigate('/dashboard');
+      const userData = await login(email, password);
+      
+      if (userData?.global_role === 'guard') {
+        navigate('/gate');
+      } else {
+        navigate('/dashboard');
+      }
     } catch (err) {
       setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
     } finally {

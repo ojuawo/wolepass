@@ -10,5 +10,16 @@ class Tenant extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $fillable = ['name', 'slug', 'tenant_type', 'subscription_status'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'tenant_type',
+        'subscription_status',
+        'paystack_customer_code',
+        'subscription_ends_at',
+    ];
+
+    protected $casts = [
+        'subscription_ends_at' => 'datetime',
+    ];
 }

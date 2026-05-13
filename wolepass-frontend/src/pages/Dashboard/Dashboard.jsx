@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
@@ -71,9 +72,9 @@ const Dashboard = () => {
         <section className={styles.sectionBox}>
           <h2 className={styles.sectionTitle}>Quick Actions</h2>
           <div className={styles.quickActions}>
-            <button className={`${styles.actionBtn} ${styles.actionBtnPrimary}`}>
+            <Link to="/generate" style={{ textDecoration: 'none', textAlign: 'center' }} className={`${styles.actionBtn} ${styles.actionBtnPrimary}`}>
               Generate Dispatch Pass
-            </button>
+            </Link>
             <button className={styles.actionBtn}>
               Add Resident
             </button>

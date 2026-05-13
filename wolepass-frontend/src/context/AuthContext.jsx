@@ -13,7 +13,8 @@ export const AuthProvider = ({ children }) => {
   // Initialize context and assume authenticated if token exists locally
   useEffect(() => {
     if (token) {
-      setUser({ authenticated: true });
+      const storedUser = localStorage.getItem('wolepass_user');
+      setUser(storedUser ? JSON.parse(storedUser) : { authenticated: true });
     }
     setLoading(false);
   }, [token]);
@@ -27,14 +28,16 @@ export const AuthProvider = ({ children }) => {
     
     if (resolvedToken) {
       localStorage.setItem('wolepass_token', resolvedToken);
+      localStorage.setItem('wolepass_user', JSON.stringify(accessData.user || { email }));
       setToken(resolvedToken);
       setUser(accessData.user || { email });
     }
-    return response.data;
+    return accessData.user || { email };
   };
 
   const logout = () => {
     localStorage.removeItem('wolepass_token');
+    localStorage.removeItem('wolepass_user');
     setToken(null);
     setUser(null);
   };

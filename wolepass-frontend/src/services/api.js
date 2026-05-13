@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api',
+  baseURL: 'https://wolepass.komunisconcept.org.ng/wolepass_api/api',
 });
 
 api.interceptors.request.use(
@@ -18,3 +18,7 @@ api.interceptors.request.use(
 );
 
 export default api;
+
+export const initializeBilling = () => api.post('/billing/initialize');
+
+export const registerEstate = (data) => api.post('/register', data);
