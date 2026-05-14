@@ -9,6 +9,7 @@ env:
   PROJECT_ID: wolepass
   REGION: us-central1
   SERVICE_NAME: wolepass-api
+  REPOSITORY: wolepass
   REGISTRY: us-central1-docker.pkg.dev
 
 jobs:
@@ -36,10 +37,10 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          IMAGE="${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
-          docker build -t "$IMAGE" -t "${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:latest" .
+          IMAGE="${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
+          docker build -t "$IMAGE" -t "${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE_NAME }}:latest" .
           docker push "$IMAGE"
-          docker push "${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:latest"
+          docker push "${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE_NAME }}:latest"
           echo "IMAGE=$IMAGE" >> $GITHUB_ENV
 
   # ─────────────────────────────────────────────────────────────
@@ -61,7 +62,7 @@ jobs:
 
       - name: Run Migrations via Cloud Run Job
         run: |
-          IMAGE="${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
+          IMAGE="${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE_NAME }}:${{ github.sha }}"
           gcloud run jobs create migrate-job-${{ github.run_number }} \
             --image="$IMAGE" \
             --region=${{ env.REGION }} \
@@ -113,7 +114,7 @@ jobs:
         with:
           service: ${{ env.SERVICE_NAME }}
           region: ${{ env.REGION }}
-          image: ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
+          image: ${{ env.REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.SERVICE_NAME }}:${{ github.sha }}
           project_id: ${{ env.PROJECT_ID }}
           env_vars: |
             APP_NAME=WolePass
