@@ -14,38 +14,46 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Use a fixed UUID for the demo tenant so we can reference it reliably
-        $tenantId = 'd0000000-0000-0000-0000-000000000001';
-        $unitId = 'd0000000-0000-0000-0000-000000000002';
+        // Use a fixed slug for the demo tenant
+        $demoSlug = 'wolepass-demo';
 
-        // 1. Create a Demo Tenant (Estate)
-        DB::table('tenants')->updateOrInsert(
-            ['slug' => 'wolepass-demo'],
-            [
+        // 1. Ensure Demo Tenant exists and get its ID
+        $tenant = DB::table('tenants')->where('slug', $demoSlug)->first();
+        
+        if (!$tenant) {
+            $tenantId = (string) Str::uuid();
+            DB::table('tenants')->insert([
                 'id' => $tenantId,
                 'name' => 'WolePass Demo Estate',
+                'slug' => $demoSlug,
                 'tenant_type' => 'residential',
                 'subscription_status' => 'active',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]
-        );
+            ]);
+        } else {
+            $tenantId = $tenant->id;
+        }
 
-        // 2. Create a Demo Unit
-        DB::table('units')->updateOrInsert(
-            ['id' => $unitId],
-            [
+        // 2. Ensure Demo Unit exists and get its ID
+        $unit = DB::table('units')->where('tenant_id', $tenantId)->where('unit_label', 'Block A, Suite 101')->first();
+        
+        if (!$unit) {
+            $unitId = (string) Str::uuid();
+            DB::table('units')->insert([
+                'id' => $unitId,
                 'tenant_id' => $tenantId,
                 'unit_label' => 'Block A, Suite 101',
                 'payment_status' => 'cleared',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]
-        );
+            ]);
+        } else {
+            $unitId = $unit->id;
+        }
 
-        // 3. Create Demo Users with password: password123
-        // We use a pre-calculated hash to avoid "No application encryption key" errors in some environments
-        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // This is 'password'
+        // 3. Create Demo Users with password: password (from the common test hash)
+        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; 
 
         $users = [
             [
@@ -90,10 +98,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        $tenantId = 'd0000000-0000-0000-0000-000000000001';
+        $tenant = DB::table('tenants')->where('slug', 'wolepass-demo')->first();
         
-        DB::table('users')->where('tenant_id', $tenantId)->delete();
-        DB::table('units')->where('tenant_id', $tenantId)->delete();
-        DB::table('tenants')->where('id', $tenantId)->delete();
+        if ($tenant) {
+            DB::table('users')->where('tenant_id', $tenant->id)->delete();
+            DB::table('units')->where('tenant_id', $tenant->id)->delete();
+            DB::table('tenants')->where('id', $tenant->id)->delete();
+        }
     }
 };
