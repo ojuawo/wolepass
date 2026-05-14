@@ -7,10 +7,10 @@ on:
 
 env:
   PROJECT_ID: wolepass
-  REGION: us-central1
+  REGION: africa-south1
   SERVICE_NAME: wolepass-api
   REPOSITORY: wolepass
-  REGISTRY: us-central1-docker.pkg.dev
+  REGISTRY: africa-south1-docker.pkg.dev
 
 jobs:
   # ─────────────────────────────────────────────────────────────
