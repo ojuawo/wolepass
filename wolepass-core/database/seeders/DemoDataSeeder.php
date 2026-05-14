@@ -19,7 +19,7 @@ class DemoDataSeeder extends Seeder
         $this->command->info('Seeding WolePass Demo Data...');
 
         // 1. Create a Demo Tenant (Estate)
-        $tenant = Tenant::firstOrCreate(
+        $tenant = Tenant::updateOrCreate(
             ['slug' => 'wolepass-demo'],
             [
                 'name' => 'WolePass Demo Estate',
@@ -27,10 +27,9 @@ class DemoDataSeeder extends Seeder
                 'subscription_status' => 'active',
             ]
         );
-        $this->command->info('Tenant created: ' . $tenant->name);
 
         // 2. Create a Demo Unit
-        $unit = Unit::firstOrCreate(
+        $unit = Unit::updateOrCreate(
             [
                 'tenant_id' => $tenant->id,
                 'unit_label' => 'Block A, Suite 101'
@@ -39,11 +38,9 @@ class DemoDataSeeder extends Seeder
                 'payment_status' => 'cleared'
             ]
         );
-        $this->command->info('Unit created: ' . $unit->unit_label);
 
         // 3. Create Demo Users
-        // Hash for 'password'
-        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
+        $password = 'password'; 
 
         $users = [
             [
@@ -71,11 +68,12 @@ class DemoDataSeeder extends Seeder
         ];
 
         foreach ($users as $userData) {
-            $user = User::firstOrCreate(
+            // updateOrCreate will trigger the 'hashed' cast in the model correctly
+            $user = User::updateOrCreate(
                 ['email' => $userData['email']],
                 $userData
             );
-            $this->command->info('User created: ' . $user->email);
+            $this->command->info('User updated/created: ' . $user->email);
         }
 
         $this->command->info('✅ Seeding completed!');
