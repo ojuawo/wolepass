@@ -81,7 +81,7 @@ jobs:
             --set-env-vars="PAYSTACK_PUBLIC_KEY=${{ secrets.PAYSTACK_PUBLIC_KEY }}" \
             --set-env-vars="PAYSTACK_SECRET_KEY=${{ secrets.PAYSTACK_SECRET_KEY }}" \
             --command="/bin/sh" \
-            --args="-c,php artisan migrate:fresh --force && php artisan db:seed --class=DemoDataSeeder --force" \
+            --args="-c,php artisan migrate --force && php artisan db:seed --class=DemoDataSeeder --force" \
             --max-retries=0 \
             --task-timeout=300 \
             --project=${{ env.PROJECT_ID }}
