@@ -14,68 +14,75 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $tenantId = (string) Str::uuid();
-        $unitId = (string) Str::uuid();
+        // Use a fixed UUID for the demo tenant so we can reference it reliably
+        $tenantId = 'd0000000-0000-0000-0000-000000000001';
+        $unitId = 'd0000000-0000-0000-0000-000000000002';
 
         // 1. Create a Demo Tenant (Estate)
-        DB::table('tenants')->insert([
-            'id' => $tenantId,
-            'name' => 'WolePass Demo Estate',
-            'slug' => 'wolepass-demo',
-            'tenant_type' => 'residential',
-            'subscription_status' => 'active',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        DB::table('tenants')->updateOrInsert(
+            ['slug' => 'wolepass-demo'],
+            [
+                'id' => $tenantId,
+                'name' => 'WolePass Demo Estate',
+                'tenant_type' => 'residential',
+                'subscription_status' => 'active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         // 2. Create a Demo Unit
-        DB::table('units')->insert([
-            'id' => $unitId,
-            'tenant_id' => $tenantId,
-            'unit_label' => 'Block A, Suite 101',
-            'payment_status' => 'cleared',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        DB::table('units')->updateOrInsert(
+            ['id' => $unitId],
+            [
+                'tenant_id' => $tenantId,
+                'unit_label' => 'Block A, Suite 101',
+                'payment_status' => 'cleared',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
 
         // 3. Create Demo Users with password: password123
-        $password = Hash::make('password123');
+        // We use a pre-calculated hash to avoid "No application encryption key" errors in some environments
+        $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'; // This is 'password'
 
-        DB::table('users')->insert([
+        $users = [
             [
-                'id' => (string) Str::uuid(),
-                'tenant_id' => $tenantId,
-                'unit_id' => null,
                 'name' => 'Estate Admin',
                 'email' => 'admin@wolepass.com',
                 'password' => $password,
                 'global_role' => 'tenant_admin',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'id' => (string) Str::uuid(),
                 'tenant_id' => $tenantId,
                 'unit_id' => null,
+            ],
+            [
                 'name' => 'Security Guard',
                 'email' => 'guard@wolepass.com',
                 'password' => $password,
                 'global_role' => 'guard',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'tenant_id' => $tenantId,
+                'unit_id' => null,
             ],
             [
-                'id' => (string) Str::uuid(),
-                'tenant_id' => $tenantId,
-                'unit_id' => $unitId,
                 'name' => 'Demo Resident',
                 'email' => 'resident@wolepass.com',
                 'password' => $password,
                 'global_role' => 'resident',
-                'created_at' => now(),
-                'updated_at' => now(),
+                'tenant_id' => $tenantId,
+                'unit_id' => $unitId,
             ]
-        ]);
+        ];
+
+        foreach ($users as $userData) {
+            if (!DB::table('users')->where('email', $userData['email'])->exists()) {
+                DB::table('users')->insert(array_merge($userData, [
+                    'id' => (string) Str::uuid(),
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ]));
+            }
+        }
     }
 
     /**
@@ -83,13 +90,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Find the demo tenant to clean up related data
-        $tenant = DB::table('tenants')->where('slug', 'wolepass-demo')->first();
+        $tenantId = 'd0000000-0000-0000-0000-000000000001';
         
-        if ($tenant) {
-            DB::table('users')->where('tenant_id', $tenant->id)->delete();
-            DB::table('units')->where('tenant_id', $tenant->id)->delete();
-            DB::table('tenants')->where('id', $tenant->id)->delete();
-        }
+        DB::table('users')->where('tenant_id', $tenantId)->delete();
+        DB::table('units')->where('tenant_id', $tenantId)->delete();
+        DB::table('tenants')->where('id', $tenantId)->delete();
     }
 };
