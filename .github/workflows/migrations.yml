@@ -69,8 +69,8 @@ jobs:
             --set-cloudsql-instances=${{ secrets.GCP_CLOUDSQL_CONNECTION_NAME }} \
             --set-env-vars="APP_NAME=WolePass" \
             --set-env-vars="APP_ENV=production" \
-            --set-env-vars="APP_DEBUG=false" \
-            --set-env-vars="APP_URL=${{ secrets.APP_URL }}" \
+            --set-env-vars="APP_DEBUG=true" \
+            --set-env-vars="APP_URL=http://localhost" \
             --set-env-vars="DB_CONNECTION=mysql" \
             --set-env-vars="DB_SOCKET=/cloudsql/${{ secrets.GCP_CLOUDSQL_CONNECTION_NAME }}" \
             --set-env-vars="DB_HOST=127.0.0.1" \
@@ -82,8 +82,8 @@ jobs:
             --set-env-vars="PAYSTACK_SECRET_KEY=${{ secrets.PAYSTACK_SECRET_KEY }}" \
             --command="/bin/sh" \
             --args="-c,php artisan migrate --force && php artisan db:seed --class=DemoDataSeeder --force" \
-            --max-retries=1 \
-            --task-timeout=120 \
+            --max-retries=0 \
+            --task-timeout=300 \
             --project=${{ env.PROJECT_ID }}
           
           gcloud run jobs execute migrate-job-${{ github.run_number }} \
@@ -94,9 +94,9 @@ jobs:
       - name: Fetch Logs on Failure
         if: failure()
         run: |
-          echo "❌ Migration/Seeding failed. Fetching last 100 logs from Cloud Logging..."
+          echo "❌ Migration/Seeding failed. Fetching details from Cloud Logging..."
           gcloud logging read "resource.type=cloud_run_job AND resource.labels.job_name=migrate-job-${{ github.run_number }}" \
-            --limit=100 \
+            --limit=20 \
             --format="value(textPayload)" \
             --project=${{ env.PROJECT_ID }}
 
