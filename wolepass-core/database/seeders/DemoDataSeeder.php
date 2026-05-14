@@ -1,19 +1,24 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
 use App\Models\Tenant;
 use App\Models\Unit;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
-return new class extends Migration
+class DemoDataSeeder extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      */
-    public function up(): void
+    public function run(): void
     {
+        $this->command->info('Seeding WolePass Demo Data...');
+
         // 1. Create a Demo Tenant (Estate)
-        // firstOrCreate handles duplicates automatically
         $tenant = Tenant::firstOrCreate(
             ['slug' => 'wolepass-demo'],
             [
@@ -22,6 +27,7 @@ return new class extends Migration
                 'subscription_status' => 'active',
             ]
         );
+        $this->command->info('Tenant created: ' . $tenant->name);
 
         // 2. Create a Demo Unit
         $unit = Unit::firstOrCreate(
@@ -33,54 +39,45 @@ return new class extends Migration
                 'payment_status' => 'cleared'
             ]
         );
+        $this->command->info('Unit created: ' . $unit->unit_label);
 
-        // 3. Create Demo Users with password: password
-        // Using the common Laravel test hash for 'password'
+        // 3. Create Demo Users
+        // Hash for 'password'
         $password = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi';
 
-        User::firstOrCreate(
-            ['email' => 'admin@wolepass.com'],
+        $users = [
             [
+                'email' => 'admin@wolepass.com',
                 'name' => 'Estate Admin',
                 'password' => $password,
                 'global_role' => 'tenant_admin',
                 'tenant_id' => $tenant->id,
-            ]
-        );
-
-        User::firstOrCreate(
-            ['email' => 'guard@wolepass.com'],
+            ],
             [
+                'email' => 'guard@wolepass.com',
                 'name' => 'Security Guard',
                 'password' => $password,
                 'global_role' => 'guard',
                 'tenant_id' => $tenant->id,
-            ]
-        );
-
-        User::firstOrCreate(
-            ['email' => 'resident@wolepass.com'],
+            ],
             [
+                'email' => 'resident@wolepass.com',
                 'name' => 'Demo Resident',
                 'password' => $password,
                 'global_role' => 'resident',
                 'tenant_id' => $tenant->id,
                 'unit_id' => $unit->id,
             ]
-        );
-    }
+        ];
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        $tenant = Tenant::where('slug', 'wolepass-demo')->first();
-        
-        if ($tenant) {
-            User::where('tenant_id', $tenant->id)->delete();
-            Unit::where('tenant_id', $tenant->id)->delete();
-            $tenant->delete();
+        foreach ($users as $userData) {
+            $user = User::firstOrCreate(
+                ['email' => $userData['email']],
+                $userData
+            );
+            $this->command->info('User created: ' . $user->email);
         }
+
+        $this->command->info('✅ Seeding completed!');
     }
-};
+}

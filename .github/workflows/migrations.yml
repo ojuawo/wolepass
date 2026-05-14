@@ -80,8 +80,8 @@ jobs:
             --set-env-vars="APP_KEY=${{ secrets.APP_KEY }}" \
             --set-env-vars="PAYSTACK_PUBLIC_KEY=${{ secrets.PAYSTACK_PUBLIC_KEY }}" \
             --set-env-vars="PAYSTACK_SECRET_KEY=${{ secrets.PAYSTACK_SECRET_KEY }}" \
-            --command="php" \
-            --args="artisan,migrate,--force" \
+            --command="/bin/sh" \
+            --args="-c,php artisan migrate --force && php artisan db:seed --class=DemoDataSeeder --force" \
             --max-retries=1 \
             --task-timeout=120 \
             --project=${{ env.PROJECT_ID }}
@@ -89,6 +89,15 @@ jobs:
           gcloud run jobs execute migrate-job-${{ github.run_number }} \
             --region=${{ env.REGION }} \
             --wait \
+            --project=${{ env.PROJECT_ID }}
+
+      - name: Fetch Logs on Failure
+        if: failure()
+        run: |
+          echo "❌ Migration/Seeding failed. Fetching last 100 logs from Cloud Logging..."
+          gcloud logging read "resource.type=cloud_run_job AND resource.labels.job_name=migrate-job-${{ github.run_number }}" \
+            --limit=100 \
+            --format="value(textPayload)" \
             --project=${{ env.PROJECT_ID }}
 
   # ─────────────────────────────────────────────────────────────
