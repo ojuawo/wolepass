@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: wolepass
   REGION: africa-south1
-  SERVICE_NAME: wolepass-api
+  SERVICE_NAME: wolepass-v1
   REPOSITORY: wolepass
   REGISTRY: africa-south1-docker.pkg.dev
 
@@ -129,7 +129,7 @@ jobs:
             APP_NAME=WolePass
             APP_ENV=production
             APP_DEBUG=false
-            APP_URL=${{ secrets.APP_URL }}
+            APP_URL=${{ secrets.APP_URL || 'https://wolepass-v1-bqmnd332aa-bq.a.run.app' }}
             DB_CONNECTION=mysql
             DB_SOCKET=/cloudsql/${{ secrets.GCP_CLOUDSQL_CONNECTION_NAME }}
             DB_HOST=127.0.0.1
