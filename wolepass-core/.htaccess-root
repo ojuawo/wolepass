@@ -1,0 +1,9 @@
+# Block direct access to sensitive files
+<FilesMatch "^\.env|^\.git|composer\.(json|lock)$|package\.json$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Redirect all requests to the Laravel public/ directory
+RewriteEngine On
+RewriteRule ^(.*)$ public/$1 [L]
