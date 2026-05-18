@@ -31,6 +31,14 @@ class AuthController extends Controller
         }
 
         $user  = Auth::user();
+
+        if (!$user->is_approved) {
+            Auth::logout();
+            return response()->json([
+                'message' => 'Your onboarding request is pending approval by the estate administrator.'
+            ], 403);
+        }
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([

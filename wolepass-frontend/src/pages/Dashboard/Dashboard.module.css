@@ -175,3 +175,57 @@
   filter: brightness(1.1);
   transform: scale(1.02);
 }
+
+.pendingHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pendingCount {
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #fef3c7;
+  color: #d97706;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.approveBtn {
+  background: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.approveBtn:hover {
+  background: #059669;
+}
+
+.rejectBtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.rejectBtn:hover {
+  background: #dc2626;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2.5rem;
+  color: #64748b;
+}

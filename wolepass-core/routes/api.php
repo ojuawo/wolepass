@@ -10,10 +10,16 @@ use App\Http\Controllers\Api\NoticeController;
 use App\Http\Controllers\Api\SyncController;
 use App\Http\Controllers\Api\VisitController;
 use App\Http\Controllers\Api\TicketController;
+use App\Http\Controllers\Api\ResidentOnboardingController;
 
 // ── Public routes (no auth required) ─────────────────────────────────────────
 Route::post('/login',    [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+
+// Public Resident Onboarding helper endpoints
+Route::get('/public/estates',                [ResidentOnboardingController::class, 'estates']);
+Route::get('/public/estates/{tenant}/units', [ResidentOnboardingController::class, 'units']);
+Route::post('/resident/register',            [ResidentOnboardingController::class, 'registerResident']);
 
 // Paystack webhook — public, but signature-verified inside the controller
 Route::post('/webhooks/paystack', [BillingController::class, 'webhook']);
@@ -50,4 +56,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tickets/{ticket}',           [TicketController::class, 'show']);
     Route::post('/tickets/{ticket}',          [TicketController::class, 'update']); // Using POST for updates so multipart/form-data works easily in PHP
     Route::post('/tickets/{ticket}/comments', [TicketController::class, 'addComment']);
+
+    // ── Resident Onboarding Admin ──────────────────────────────────────────────
+    Route::get('/admin/pending-residents',           [ResidentOnboardingController::class, 'pendingList']);
+    Route::post('/admin/residents/{user}/approve',   [ResidentOnboardingController::class, 'approve']);
+    Route::post('/admin/residents/{user}/reject',    [ResidentOnboardingController::class, 'reject']);
 });
