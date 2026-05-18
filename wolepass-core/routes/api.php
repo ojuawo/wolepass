@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BillingController;
 use App\Http\Controllers\Api\GateController;
+use App\Http\Controllers\Api\NoticeController;
 use App\Http\Controllers\Api\SyncController;
 use App\Http\Controllers\Api\VisitController;
 
@@ -34,4 +35,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/gate/validate', [GateController::class, 'validatePass']);
     Route::get('/gate/sync',      [SyncController::class, 'download']);
     Route::post('/gate/sync',     [SyncController::class, 'upload']);
+
+    // ── Community Noticeboard ──────────────────────────────────────────────────
+    Route::get('/notices',                    [NoticeController::class, 'index']);
+    Route::post('/notices',                   [NoticeController::class, 'store']);
+    Route::delete('/notices/{notice}',        [NoticeController::class, 'destroy']);
+    Route::post('/notices/{notice}/vote',     [NoticeController::class, 'vote']);
 });

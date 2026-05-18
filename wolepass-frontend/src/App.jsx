@@ -11,6 +11,7 @@ import Profile from './pages/Profile/Profile';
 import Settings from './pages/Settings/Settings';
 import GeneratePass from './pages/GeneratePass/GeneratePass';
 import Landing from './pages/Landing/Landing';
+import Noticeboard from './pages/Noticeboard/Noticeboard';
 import Register from './pages/Register/Register';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           {/* Protected Routes utilizing SaaS Shell Layout */}
           <Route element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/noticeboard" element={<Noticeboard />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/generate" element={<GeneratePass />} />

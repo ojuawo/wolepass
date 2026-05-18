@@ -24,19 +24,31 @@ const MainLayout = () => {
             to="/dashboard" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            Dashboard
+            🏠 Dashboard
+          </NavLink>
+          <NavLink 
+            to="/noticeboard" 
+            className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+          >
+            📣 Community Board
+          </NavLink>
+          <NavLink 
+            to="/generate" 
+            className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+          >
+            🎫 Generate Pass
           </NavLink>
           <NavLink 
             to="/profile" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            Profile
+            👤 Profile
           </NavLink>
           <NavLink 
             to="/settings" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            Settings
+            ⚙️ Settings
           </NavLink>
         </nav>
 
