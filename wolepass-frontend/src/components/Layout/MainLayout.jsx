@@ -33,6 +33,12 @@ const MainLayout = () => {
             📣 Community Board
           </NavLink>
           <NavLink 
+            to="/tickets" 
+            className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
+          >
+            🛠️ Maintenance Hub
+          </NavLink>
+          <NavLink 
             to="/generate" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >

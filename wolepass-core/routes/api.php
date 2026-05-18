@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\GateController;
 use App\Http\Controllers\Api\NoticeController;
 use App\Http\Controllers\Api\SyncController;
 use App\Http\Controllers\Api\VisitController;
+use App\Http\Controllers\Api\TicketController;
 
 // ── Public routes (no auth required) ─────────────────────────────────────────
 Route::post('/login',    [AuthController::class, 'login']);
@@ -41,4 +42,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/notices',                   [NoticeController::class, 'store']);
     Route::delete('/notices/{notice}',        [NoticeController::class, 'destroy']);
     Route::post('/notices/{notice}/vote',     [NoticeController::class, 'vote']);
+
+    // ── Maintenance Ticketing ──────────────────────────────────────────────────
+    Route::get('/tickets',                    [TicketController::class, 'index']);
+    Route::post('/tickets',                   [TicketController::class, 'store']);
+    Route::get('/tickets/staff',              [TicketController::class, 'staff']);
+    Route::get('/tickets/{ticket}',           [TicketController::class, 'show']);
+    Route::post('/tickets/{ticket}',          [TicketController::class, 'update']); // Using POST for updates so multipart/form-data works easily in PHP
+    Route::post('/tickets/{ticket}/comments', [TicketController::class, 'addComment']);
 });
