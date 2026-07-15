@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.gatekeep.com.ng/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://gatekeep.com.ng/api',
 });
 
 api.interceptors.request.use(

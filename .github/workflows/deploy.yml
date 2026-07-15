@@ -28,7 +28,7 @@ jobs:
           npm install
           npm run build
         env:
-          VITE_API_BASE_URL: 'https://api.gatekeep.com.ng/api'
+          VITE_API_BASE_URL: 'https://gatekeep.com.ng/api'
 
       # ── 2. PREPARE BACKEND ──
       - name: Set up PHP
