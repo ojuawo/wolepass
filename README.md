@@ -77,4 +77,12 @@ To run the backend locally:
 
 ---
 
+## 🔑 Deployment Secrets
+Add these credentials to GitHub Actions secrets:
+- `GO54_FTP_SERVER` - Your FTP server address.
+- `GO54_FTP_USERNAME` - The FTP username.
+- `GO54_FTP_PASSWORD` - The FTP password.
+
+---
+
 © 2026 GateKeep Visitor Management. All rights reserved.
