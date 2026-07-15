@@ -51,7 +51,7 @@ jobs:
           password: ${{ secrets.GO54_FTP_PASSWORD }}
           port: ${{ secrets.GO54_FTP_PORT || 21 }}
           local-dir: ./wolepass-frontend/dist/
-          server-dir: ${{ secrets.GO54_FRONTEND_REMOTE_DIR || 'public_html/' }}
+          server-dir: ${{ secrets.GO54_FRONTEND_REMOTE_DIR || './' }}
           dangerous-clean-slate: false
 
       # ── 4. DEPLOY BACKEND TO GO54 (e.g. wolepass-core) ──
