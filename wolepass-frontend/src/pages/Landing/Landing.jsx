@@ -175,55 +175,7 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* ── PRICING ── */}
-      <section className={styles.pricingSection}>
-        <h2 className={styles.featuresTitle}>Simple, Transparent Pricing</h2>
-        <p className={styles.featuresSub}>All plans include Utility Vending. Billing Enforcement unlocks from Standard.</p>
-        <div className={styles.pricingGrid}>
-          <div className={styles.priceCard}>
-            <h3 className={styles.priceName}>Basic</h3>
-            <div className={styles.priceAmount}>₦25,000<span>/mo</span></div>
-            <p className={styles.priceTarget}>Up to 50 units</p>
-            <ul className={styles.priceList}>
-              <li>Visitor Pass & OTP Gate</li>
-              <li>Utility Vending</li>
-              <li>5 Passes / Week Per Resident</li>
-              <li>Audit Logs (30-day)</li>
-              <li>Standard Support</li>
-            </ul>
-            <Link to="/register" className={styles.priceButton}>Get Started</Link>
-          </div>
-          <div className={`${styles.priceCard} ${styles.priceCardPopular}`}>
-            <div className={styles.popularBadge}>Most Popular</div>
-            <h3 className={styles.priceName}>Standard</h3>
-            <div className={styles.priceAmount}>₦75,000<span>/mo</span></div>
-            <p className={styles.priceTarget}>Up to 200 units</p>
-            <ul className={styles.priceList}>
-              <li><strong>Billing Enforcement</strong></li>
-              <li>Utility Vending</li>
-              <li>Community Noticeboard</li>
-              <li>Maintenance Ticketing</li>
-              <li>Audit Logs (1 year)</li>
-              <li>Priority Support</li>
-            </ul>
-            <Link to="/register" className={styles.priceButtonPopular}>Get Started</Link>
-          </div>
-          <div className={styles.priceCard}>
-            <h3 className={styles.priceName}>Premium</h3>
-            <div className={styles.priceAmount}>Custom</div>
-            <p className={styles.priceTarget}>Unlimited units</p>
-            <ul className={styles.priceList}>
-              <li>Hardware Integration</li>
-              <li>Utility Vending</li>
-              <li>Advanced Analytics</li>
-              <li>Dedicated Account Manager</li>
-              <li>Whitelabel Options</li>
-              <li>API Access</li>
-            </ul>
-            <a href="mailto:hello@gatekeep.com.ng" className={styles.priceButton}>Contact Us</a>
-          </div>
-        </div>
-      </section>
+
 
       {/* ── LIMITED OFFER CTA ── */}
       <section className={styles.offerSection}>
