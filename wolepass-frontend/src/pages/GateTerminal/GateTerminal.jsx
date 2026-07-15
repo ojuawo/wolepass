@@ -11,15 +11,19 @@ const GateTerminal = () => {
   const [lastSynced, setLastSynced] = useState(null);
 
   // Visitor list state
-  const [expectedVisitors, setExpectedVisitors] = useState([]);
+  const [pendingVisitors, setPendingVisitors] = useState([]);
+  const [checkedInVisitors, setCheckedInVisitors] = useState([]);
+  const [activeTab, setActiveTab] = useState('expected'); // 'expected' | 'checked_in'
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedVisitor, setSelectedVisitor] = useState(null);
   const [otp, setOtp] = useState('');
 
-  const loadExpectedVisitors = useCallback(async () => {
+  const loadVisitors = useCallback(async () => {
     try {
-      const passes = await db.passes.where('status').equals('pending').toArray();
-      setExpectedVisitors(passes);
+      const pending = await db.passes.where('status').equals('pending').toArray();
+      const checkedIn = await db.passes.where('status').equals('checked_in').toArray();
+      setPendingVisitors(pending);
+      setCheckedInVisitors(checkedIn);
     } catch (err) {
       console.error('Failed to load visitors:', err);
     }
@@ -32,7 +36,7 @@ const GateTerminal = () => {
       await uploadLogs();
       await downloadPasses();
       setLastSynced(new Date().toLocaleTimeString());
-      await loadExpectedVisitors();
+      await loadVisitors();
       setLoading(false);
     };
 
@@ -46,14 +50,14 @@ const GateTerminal = () => {
     if (navigator.onLine) {
       handleOnline();
     } else {
-      loadExpectedVisitors();
+      loadVisitors();
     }
 
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, [loadExpectedVisitors]);
+  }, [loadVisitors]);
 
   const handleManualSync = async () => {
     if (!navigator.onLine) return;
@@ -61,7 +65,7 @@ const GateTerminal = () => {
     await uploadLogs();
     await downloadPasses();
     setLastSynced(new Date().toLocaleTimeString());
-    await loadExpectedVisitors();
+    await loadVisitors();
     setLoading(false);
   };
 
@@ -114,8 +118,9 @@ const GateTerminal = () => {
         synced: 0
       });
 
-      setScanResult(pass);
+      setScanResult({ ...pass, action: 'checked_in' });
       setOtp('');
+      setSelectedVisitor(null);
 
       if (navigator.onLine) {
         uploadLogs();
@@ -127,12 +132,41 @@ const GateTerminal = () => {
     }
   };
 
+  const handleCheckOut = async (e) => {
+    e.preventDefault();
+    if (!selectedVisitor) return;
+
+    setLoading(true);
+    setError(null);
+    setScanResult(null);
+
+    try {
+      await db.passes.update(selectedVisitor.otp_code, { status: 'checked_out' });
+      await db.offline_logs.add({
+        otp_code: selectedVisitor.otp_code,
+        checked_out_at: new Date().toISOString(),
+        synced: 0
+      });
+
+      setScanResult({ ...selectedVisitor, action: 'checked_out' });
+      setSelectedVisitor(null);
+
+      if (navigator.onLine) {
+        uploadLogs();
+      }
+    } catch (err) {
+      setError('A local database error occurred during checkout.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleReset = () => {
     setScanResult(null);
     setError(null);
     setSelectedVisitor(null);
     setOtp('');
-    loadExpectedVisitors();
+    loadVisitors();
   };
 
   const handleOtpChange = (e) => {
@@ -142,7 +176,9 @@ const GateTerminal = () => {
     }
   };
 
-  const filteredVisitors = expectedVisitors.filter((v) => {
+  const activeVisitors = activeTab === 'expected' ? pendingVisitors : checkedInVisitors;
+
+  const filteredVisitors = activeVisitors.filter((v) => {
     const name = (v.visitor_name || '').toLowerCase();
     const dest = (v.destination || '').toLowerCase();
     const q = searchQuery.toLowerCase();
@@ -171,25 +207,30 @@ const GateTerminal = () => {
     </div>
   );
 
-  // ── ACCESS GRANTED ──
+  // ── ACCESS GRANTED / CHECK-OUT SUCCESS ──
   if (scanResult) {
+    const isCheckout = scanResult.action === 'checked_out';
     return (
       <div className={styles.container}>
         <SyncHeader />
-        <div className={styles.successCard}>
-          <h2>ACCESS GRANTED</h2>
+        <div className={isCheckout ? styles.checkoutSuccessCard : styles.successCard}>
+          <h2>{isCheckout ? 'CHECK-OUT CONFIRMED' : 'ACCESS GRANTED'}</h2>
           <p className={styles.infoText}>Visitor: {scanResult.visitor_name || 'Unknown'}</p>
           <p className={styles.infoText}>Destination: {scanResult.destination}</p>
+          <p className={styles.infoText}>
+            Status: {isCheckout ? 'Checked Out Successfully' : 'Checked In Successfully'}
+          </p>
           <button className={styles.resetButton} onClick={handleReset}>
-            Scan Next Pass
+            Back to Terminal
           </button>
         </div>
       </div>
     );
   }
 
-  // ── OTP CONFIRMATION (Step 2) ──
+  // ── CONFIRMATION PANEL (Step 2) ──
   if (selectedVisitor) {
+    const isCheckoutFlow = selectedVisitor.status === 'checked_in';
     return (
       <div className={styles.container}>
         <SyncHeader />
@@ -206,42 +247,63 @@ const GateTerminal = () => {
               <span className={styles.detailValue}>{selectedVisitor.destination || '—'}</span>
             </div>
             <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>Expected</span>
+              <span className={styles.detailLabel}>Expected Arrival</span>
               <span className={styles.detailValue}>
                 {selectedVisitor.expected_arrival
                   ? new Date(selectedVisitor.expected_arrival).toLocaleString()
                   : '—'}
               </span>
             </div>
+            {isCheckoutFlow && (
+              <div className={styles.detailRow}>
+                <span className={styles.detailLabel}>Current Status</span>
+                <span className={styles.detailValue} style={{ color: '#10b981', fontWeight: 'bold' }}>
+                  Checked In
+                </span>
+              </div>
+            )}
           </div>
 
           {error && (
             <div className={styles.inlineError}>{error}</div>
           )}
 
-          <form onSubmit={handleValidate} className={styles.otpForm}>
-            <p className={styles.otpPrompt}>Enter the visitor's 6-digit OTP to confirm check-in:</p>
-            <input
-              type="tel"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              className={styles.input}
-              placeholder="ENTER OTP"
-              value={otp}
-              onChange={handleOtpChange}
-              disabled={loading}
-              autoComplete="off"
-              autoFocus
-              maxLength={6}
-            />
-            <button
-              type="submit"
-              className={styles.button}
-              disabled={loading || otp.length < 6}
-            >
-              {loading ? 'Validating...' : 'Confirm Check-In'}
-            </button>
-          </form>
+          {isCheckoutFlow ? (
+            <form onSubmit={handleCheckOut} className={styles.otpForm}>
+              <p className={styles.otpPrompt}>Click the button below to confirm the visitor is leaving the estate:</p>
+              <button
+                type="submit"
+                className={styles.checkoutBtn}
+                disabled={loading}
+              >
+                {loading ? 'Processing...' : 'Confirm Check-Out'}
+              </button>
+            </form>
+          ) : (
+            <form onSubmit={handleValidate} className={styles.otpForm}>
+              <p className={styles.otpPrompt}>Enter the visitor's 6-digit OTP to confirm check-in:</p>
+              <input
+                type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                className={styles.input}
+                placeholder="ENTER OTP"
+                value={otp}
+                onChange={handleOtpChange}
+                disabled={loading}
+                autoComplete="off"
+                autoFocus
+                maxLength={6}
+              />
+              <button
+                type="submit"
+                className={styles.button}
+                disabled={loading || otp.length < 6}
+              >
+                {loading ? 'Validating...' : 'Confirm Check-In'}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     );
@@ -253,7 +315,31 @@ const GateTerminal = () => {
       <SyncHeader showControls />
 
       <h1 className={styles.title}>Gate Terminal</h1>
-      <p className={styles.subtitle}>Select an expected visitor to begin check-in</p>
+      <p className={styles.subtitle}>Select a guest to manage check-in or check-out</p>
+
+      {/* Tabs */}
+      <div className={styles.tabs}>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'expected' ? styles.tabBtnActive : ''}`}
+          onClick={() => {
+            setActiveTab('expected');
+            setSearchQuery('');
+          }}
+        >
+          Expected Guests
+          <span className={styles.tabBadge}>{pendingVisitors.length}</span>
+        </button>
+        <button
+          className={`${styles.tabBtn} ${activeTab === 'checked_in' ? styles.tabBtnActive : ''}`}
+          onClick={() => {
+            setActiveTab('checked_in');
+            setSearchQuery('');
+          }}
+        >
+          Checked-In Guests
+          <span className={styles.tabBadge}>{checkedInVisitors.length}</span>
+        </button>
+      </div>
 
       <div className={styles.searchBar}>
         <input
@@ -266,12 +352,16 @@ const GateTerminal = () => {
       </div>
 
       <div className={styles.visitorList}>
-        {loading && expectedVisitors.length === 0 && (
+        {loading && activeVisitors.length === 0 && (
           <p className={styles.emptyState}>Syncing visitors...</p>
         )}
         {!loading && filteredVisitors.length === 0 && (
           <p className={styles.emptyState}>
-            {searchQuery ? 'No visitors match your search.' : 'No pending visitors. Try syncing.'}
+            {searchQuery
+              ? 'No visitors match your search.'
+              : activeTab === 'expected'
+              ? 'No pending expected guests.'
+              : 'No currently checked-in guests.'}
           </p>
         )}
         {filteredVisitors.map((visitor) => (
@@ -285,10 +375,8 @@ const GateTerminal = () => {
               <span className={styles.visitorDest}>{visitor.destination || 'No destination'}</span>
             </div>
             <div className={styles.visitorMeta}>
-              <span className={styles.visitorTime}>
-                {visitor.expected_arrival
-                  ? new Date(visitor.expected_arrival).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-                  : '—'}
+              <span className={styles.visitorTime} style={{ color: activeTab === 'expected' ? '#60a5fa' : '#fbbf24' }}>
+                {activeTab === 'expected' ? 'Expected' : 'Checked In'}
               </span>
               <span className={styles.chevron}>›</span>
             </div>
