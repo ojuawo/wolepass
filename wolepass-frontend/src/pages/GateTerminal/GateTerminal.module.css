@@ -483,3 +483,43 @@
   margin: 0;
 }
 
+/* ── Mobile Responsiveness ── */
+@media (max-width: 640px) {
+  .container {
+    padding: 1.5rem;
+    padding-top: 1.5rem;
+  }
+  
+  .syncHeader, .syncStatusContainer {
+    position: static;
+    width: 100%;
+    max-width: 600px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+
+  .syncControls {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .lastSyncedTxt {
+    font-size: 0.75rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+}
+
+
