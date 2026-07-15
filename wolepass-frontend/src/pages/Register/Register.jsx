@@ -36,8 +36,8 @@ const Register = () => {
       const token = accessData.token || accessData.access_token;
       
       if (token) {
-        localStorage.setItem('wolepass_token', token);
-        localStorage.setItem('wolepass_user', JSON.stringify(accessData.user || { email: formData.email }));
+        localStorage.setItem('gatekeep_token', token);
+        localStorage.setItem('gatekeep_user', JSON.stringify(accessData.user || { email: formData.email }));
       }
       
       // Directly redirect new instances strictly outbound out of application frame securing Paystack integrations
@@ -58,7 +58,7 @@ const Register = () => {
     <div className={styles.container}>
       <div className={styles.formWrapper}>
         <h1 className={styles.title}>Create Your Estate</h1>
-        <p className={styles.subtitle}>Get started with WolePass in 2 minutes.</p>
+        <p className={styles.subtitle}>Get started with GateKeep in 2 minutes.</p>
 
         {error && <div className={styles.errorBanner}>{error}</div>}
 

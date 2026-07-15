@@ -7,7 +7,7 @@ const PublicLayout = () => {
     <div className={styles.layoutContainer}>
       <header className={styles.navbar}>
         <div className={styles.logoContainer}>
-          <Link to="/" className={styles.logo}>WolePass</Link>
+          <Link to="/" className={styles.logo}>GateKeep</Link>
         </div>
         <nav className={styles.navLinks}>
           <Link to="/login" className={styles.loginBtn}>Login</Link>

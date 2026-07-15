@@ -61,7 +61,7 @@ class VisitApiTest extends TestCase
             'status' => 'pending',
         ]);
 
-        $shareableText = "Your WolePass for {$unit->unit_label} is: {$response->json('visit.otp_code')}. Show this at the gate.";
+        $shareableText = "Your GateKeep Pass for {$unit->unit_label} is: {$response->json('visit.otp_code')}. Show this at the gate.";
         $response->assertJsonPath('shareable_text', $shareableText);
     }
 

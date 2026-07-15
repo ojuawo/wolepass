@@ -1,0 +1,74 @@
+name: Deploy GateKeep to Go54 Hosting
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy to Go54
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # ── 1. BUILD FRONTEND ──
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-size: 20
+          cache: 'npm'
+          cache-dependency-path: 'wolepass-frontend/package-lock.json'
+
+      - name: Install Frontend Dependencies & Build
+        run: |
+          cd wolepass-frontend
+          npm install
+          npm run build
+        env:
+          VITE_API_BASE_URL: 'https://api.gatekeep.com.ng/api'
+
+      # ── 2. PREPARE BACKEND ──
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, xml, ctype, iconv, mysql, zip
+
+      - name: Install Backend Dependencies
+        run: |
+          cd wolepass-core
+          composer install --no-dev --optimize-autoloader
+
+      # ── 3. DEPLOY FRONTEND TO GO54 (e.g. public_html) ──
+      - name: Deploy Frontend via SFTP/FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.GO54_FTP_SERVER }}
+          username: ${{ secrets.GO54_FTP_USERNAME }}
+          password: ${{ secrets.GO54_FTP_PASSWORD }}
+          port: ${{ secrets.GO54_FTP_PORT || 21 }}
+          local-dir: ./wolepass-frontend/dist/
+          server-dir: ${{ secrets.GO54_FRONTEND_REMOTE_DIR || 'public_html/' }}
+          dangerous-clean-slate: false
+
+      # ── 4. DEPLOY BACKEND TO GO54 (e.g. wolepass-core) ──
+      - name: Deploy Backend via SFTP/FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.GO54_FTP_SERVER }}
+          username: ${{ secrets.GO54_FTP_USERNAME }}
+          password: ${{ secrets.GO54_FTP_PASSWORD }}
+          port: ${{ secrets.GO54_FTP_PORT || 21 }}
+          local-dir: ./wolepass-core/
+          server-dir: ${{ secrets.GO54_BACKEND_REMOTE_DIR || 'gatekeep-core/' }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/tests/**
+            **/.env
+            **/storage/logs/*.log

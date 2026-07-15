@@ -1,6 +1,6 @@
-# 🏢 WolePass: Professional Visitor Management System
+# 🏢 GateKeep: Professional Visitor Management System
 
-**WolePass** is a high-performance, multi-tenant Visitor Management System (VMS) designed for residential estates and commercial complexes. It simplifies the guest entry process while enhancing security through real-time OTP verification and automated billing enforcement.
+**GateKeep** is a high-performance, multi-tenant Visitor Management System (VMS) designed for residential estates and commercial complexes. It simplifies the guest entry process while enhancing security through real-time OTP verification and automated billing enforcement.
 
 ---
 
@@ -24,6 +24,7 @@
 - **Unit Management:** Group residents into Blocks/Suites.
 - **Activity Analytics:** Overview of estate traffic, peak visiting hours, and active guests.
 - **Subscription Control:** Manage estate-wide billing and access states.
+- **Resident Onboarding Panel:** Approve or reject self-registered resident requests before they gain access.
 
 ---
 
@@ -31,9 +32,9 @@
 
 - **Backend:** Laravel 11 (PHP 8.2)
 - **Frontend:** React + Vite (Modern, Responsive UI)
-- **Database:** Google Cloud SQL (MySQL)
-- **Infrastructure:** Google Cloud Run (Containerized Deployment)
-- **CI/CD:** GitHub Actions (Automated Builds & Migrations)
+- **Database:** MySQL
+- **Infrastructure:** Go54 Shared/VPS Hosting
+- **CI/CD:** GitHub Actions (Automated FTP/SFTP Builds & Deployments)
 - **Payment Gateway:** Paystack
 
 ---
@@ -41,30 +42,28 @@
 ## 🏗️ Architecture & Infrastructure
 
 ### Multi-Tenancy
-WolePass is built with a robust multi-tenant architecture. Every Estate (Tenant) has isolated data, ensuring security and privacy across the entire platform.
+GateKeep is built with a robust multi-tenant architecture. Every Estate (Tenant) has isolated data, ensuring security and privacy across the entire platform.
 
 ### Automated Deployment
-The project uses a sophisticated CI/CD pipeline:
-1. **Dockerized:** The application is containerized using a multi-stage `Dockerfile` optimized for production.
-2. **Artifact Registry:** Images are stored securely in Google Cloud.
-3. **Cloud Run Jobs:** Database migrations and seeding are handled by ephemeral Cloud Run Jobs to ensure zero-downtime schema updates.
-4. **Cloud Run Service:** The live API is served via auto-scaling serverless containers in the `africa-south1` (Johannesburg) region.
+The project uses an automated GitHub Actions deployment pipeline:
+1. **Frontend Build:** The React application is built, optimized, and deployed to your main web directory (e.g. `public_html/`).
+2. **Backend Deployment:** Composer dependencies are prepared, and the backend core is safely deployed.
 
 ---
 
 ## 🚦 Getting Started (Demo)
 
 ### Live API Base URL
-`https://wolepass-v1-bqmnd332aa-bq.a.run.app/api`
+`https://api.gatekeep.com.ng/api`
 
 ### Demo Credentials
 Use these accounts to explore the different perspectives of the system:
 
 | Role | Email | Password |
 |---|---|---|
-| **Estate Admin** | `admin@wolepass.com` | `password` |
-| **Security Guard** | `guard@wolepass.com` | `password` |
-| **Demo Resident** | `resident1@wolepass.com` | `password` |
+| **Estate Admin** | `admin@gatekeep.com.ng` | `password` |
+| **Security Guard** | `guard@gatekeep.com.ng` | `password` |
+| **Demo Resident** | `adebayo.0@demo.gatekeep.com.ng` | `password` |
 
 ---
 
@@ -78,4 +77,4 @@ To run the backend locally:
 
 ---
 
-© 2026 WolePass Visitor Management. All rights reserved.
+© 2026 GateKeep Visitor Management. All rights reserved.

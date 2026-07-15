@@ -1,6 +1,6 @@
 {
-  "name": "WolePass Visitor Management",
-  "short_name": "WolePass",
+  "name": "GateKeep Visitor Management",
+  "short_name": "GateKeep",
   "description": "Secure and seamless visitor management for estates and complexes.",
   "start_url": "/",
   "display": "standalone",

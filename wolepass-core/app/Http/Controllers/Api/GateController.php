@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class GateController extends Controller
 {
     /**
-     * Validate a WolePass OTP at the gate.
+     * Validate a GateKeep Pass OTP at the gate.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -36,7 +36,7 @@ class GateController extends Controller
         if (! $visit) {
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid or Expired WolePass.',
+                'message' => 'Invalid or Expired GateKeep Pass.',
             ], 404);
         }
 

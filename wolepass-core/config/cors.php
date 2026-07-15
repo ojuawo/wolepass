@@ -22,11 +22,12 @@ return [
     'allowed_origins' => [
         'http://localhost:5173',
         'http://localhost:3000',
-        'https://wolepass-demo.vercel.app',
+        'https://gatekeep.com.ng',
+        'https://demo.gatekeep.com.ng',
     ],
 
     'allowed_origins_patterns' => [
-        '#^https://wolepass.*\.vercel\.app$#',
+        '#^https://.*gatekeep.*$#',
     ],
 
     'allowed_headers' => ['*'],

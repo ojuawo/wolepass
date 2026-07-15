@@ -7,7 +7,7 @@ use App\Models\Unit;
 use App\Models\Visit;
 use App\Models\Visitor;
 
-class WolePassService
+class GateKeepService
 {
     protected $sendchamp;
 
@@ -17,7 +17,7 @@ class WolePassService
     }
 
     /**
-     * Generate a WolePass for a visitor and alert them natively.
+     * Generate a GateKeep Pass for a visitor and alert them natively.
      *
      * @param array $data
      * @param User $host
@@ -64,7 +64,7 @@ class WolePassService
                 $unitLabel = $unit->unit_label;
             }
 
-            $message = "Your WolePass for {$unitLabel} is: {$otp}. Show this at the gate.";
+            $message = "Your GateKeep Pass for {$unitLabel} is: {$otp}. Show this at the gate.";
             
             $this->sendchamp->sendWhatsApp($data['phone_number'], $message);
         }

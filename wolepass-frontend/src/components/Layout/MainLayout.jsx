@@ -16,7 +16,7 @@ const MainLayout = () => {
     <div className={styles.layoutContainer}>
       <aside className={styles.sidebar}>
         <div className={styles.sidebarHeader}>
-          <h2>WolePass</h2>
+          <h2>GateKeep</h2>
         </div>
         
         <nav className={styles.navMenu}>

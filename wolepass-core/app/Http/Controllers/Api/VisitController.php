@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Services\WolePassService;
+use App\Services\GateKeepService;
 use Illuminate\Http\Request;
 
 class VisitController extends Controller
 {
-    protected $wolePassService;
+    protected $gateKeepService;
 
-    public function __construct(WolePassService $wolePassService)
+    public function __construct(GateKeepService $gateKeepService)
     {
-        $this->wolePassService = $wolePassService;
+        $this->gateKeepService = $gateKeepService;
     }
 
     /**
-     * Store a newly created WolePass (Visit) in storage.
+     * Store a newly created GateKeep Pass (Visit) in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
@@ -30,7 +30,7 @@ class VisitController extends Controller
             'expected_arrival' => 'required|date|after:now',
         ]);
 
-        $visit = $this->wolePassService->generate($validated, $request->user());
+        $visit = $this->gateKeepService->generate($validated, $request->user());
 
         $unitLabel = 'Your Unit';
         if ($request->user()->unit_id) {
@@ -40,7 +40,7 @@ class VisitController extends Controller
             }
         }
 
-        $shareableText = "Your WolePass for {$unitLabel} is: {$visit->otp_code}. Show this at the gate.";
+        $shareableText = "Your GateKeep Pass for {$unitLabel} is: {$visit->otp_code}. Show this at the gate.";
 
         return response()->json([
             'visit' => $visit,

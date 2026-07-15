@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         // 3. Create the tenant admin account
         User::firstOrCreate(
-            ['email' => 'admin@wolepass.com'],
+            ['email' => 'admin@gatekeep.com.ng'],
             [
                 'name'        => 'Olamide Admin',
                 'tenant_id'   => $tenant->id,
@@ -47,12 +47,13 @@ class DatabaseSeeder extends Seeder
                 'password'    => Hash::make('password'),
                 'global_role' => 'tenant_admin',
                 'phone'       => null,
+                'is_approved' => true,
             ]
         );
 
         // 4. Create the security guard account
         User::firstOrCreate(
-            ['email' => 'guard@wolepass.com'],
+            ['email' => 'guard@gatekeep.com.ng'],
             [
                 'name'        => 'Main Gate Guard',
                 'tenant_id'   => $tenant->id,
@@ -60,6 +61,7 @@ class DatabaseSeeder extends Seeder
                 'password'    => Hash::make('password'),
                 'global_role' => 'guard',
                 'phone'       => null,
+                'is_approved' => true,
             ]
         );
 
@@ -67,8 +69,8 @@ class DatabaseSeeder extends Seeder
         $this->command->table(
             ['Role', 'Email', 'Password'],
             [
-                ['tenant_admin', 'admin@wolepass.com', 'password'],
-                ['guard',        'guard@wolepass.com', 'password'],
+                ['tenant_admin', 'admin@gatekeep.com.ng', 'password'],
+                ['guard',        'guard@gatekeep.com.ng', 'password'],
             ]
         );
         $this->command->table(

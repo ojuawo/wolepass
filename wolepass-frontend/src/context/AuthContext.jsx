@@ -7,13 +7,13 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('wolepass_token') || null);
+  const [token, setToken] = useState(localStorage.getItem('gatekeep_token') || null);
   const [loading, setLoading] = useState(true);
 
   // Initialize context and assume authenticated if token exists locally
   useEffect(() => {
     if (token) {
-      const storedUser = localStorage.getItem('wolepass_user');
+      const storedUser = localStorage.getItem('gatekeep_user');
       setUser(storedUser ? JSON.parse(storedUser) : { authenticated: true });
     }
     setLoading(false);
@@ -27,8 +27,8 @@ export const AuthProvider = ({ children }) => {
     const resolvedToken = accessData.token || accessData.access_token;
     
     if (resolvedToken) {
-      localStorage.setItem('wolepass_token', resolvedToken);
-      localStorage.setItem('wolepass_user', JSON.stringify(accessData.user || { email }));
+      localStorage.setItem('gatekeep_token', resolvedToken);
+      localStorage.setItem('gatekeep_user', JSON.stringify(accessData.user || { email }));
       setToken(resolvedToken);
       setUser(accessData.user || { email });
     }
@@ -36,8 +36,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem('wolepass_token');
-    localStorage.removeItem('wolepass_user');
+    localStorage.removeItem('gatekeep_token');
+    localStorage.removeItem('gatekeep_user');
     setToken(null);
     setUser(null);
   };

@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://wolepass.komunisconcept.org.ng/api',
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://api.gatekeep.com.ng/api',
 });
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('wolepass_token');
+    const token = localStorage.getItem('gatekeep_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

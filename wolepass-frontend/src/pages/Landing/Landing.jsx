@@ -13,11 +13,11 @@ const Landing = () => {
           The Estate Platform That Collects Your Dues For You
         </h1>
         <p className={styles.subHeadline}>
-          WolePass is the only visitor management system that automatically suspends a resident's gate access when they owe dues — no confrontation, no calls, no drama.
+          GateKeep is the only visitor management system that automatically suspends a resident's gate access when they owe dues — no confrontation, no calls, no drama.
         </p>
         <div className={styles.heroActions}>
           <Link to="/register" className={styles.ctaButton}>Get Started Free</Link>
-          <a href="https://wolepass-demo.vercel.app/" target="_blank" rel="noreferrer" className={styles.demoButton}>
+          <a href="https://demo.gatekeep.com.ng" target="_blank" rel="noreferrer" className={styles.demoButton}>
             View Live Demo →
           </a>
         </div>
@@ -52,7 +52,7 @@ const Landing = () => {
       {/* ── FEATURES ── */}
       <section className={styles.featuresSection}>
         <h2 className={styles.featuresTitle}>Everything You Need to Run a Modern Estate</h2>
-        <p className={styles.featuresSub}>From the gate to the manager's dashboard, WolePass covers every touchpoint.</p>
+        <p className={styles.featuresSub}>From the gate to the manager's dashboard, GateKeep covers every touchpoint.</p>
         <div className={styles.featureGrid}>
           <div className={styles.featureCard}>
             <div className={styles.iconWrapper}>🛡️</div>
@@ -91,7 +91,7 @@ const Landing = () => {
       <section className={styles.storiesSection}>
         <div className={styles.storiesInner}>
           <h2 className={styles.featuresTitle}>Real Scenarios, Real Value</h2>
-          <p className={styles.featuresSub}>WolePass was designed around the everyday friction of estate living.</p>
+          <p className={styles.featuresSub}>GateKeep was designed around the everyday friction of estate living.</p>
           <div className={styles.storiesGrid}>
             <div className={styles.storyCard}>
               <span className={styles.storyEmoji}>📦</span>
@@ -150,7 +150,7 @@ const Landing = () => {
       {/* ── ROADMAP ── */}
       <section className={styles.roadmapSection}>
         <h2 className={styles.featuresTitle}>What's Coming Next</h2>
-        <p className={styles.featuresSub}>We're building WolePass into a full Estate OS. Here's our integration roadmap.</p>
+        <p className={styles.featuresSub}>We're building GateKeep into a full Estate OS. Here's our integration roadmap.</p>
         <div className={styles.roadmapGrid}>
           <div className={styles.roadmapCard}>
             <span className={styles.roadmapPhase}>Phase 1 — Next</span>
@@ -165,7 +165,7 @@ const Landing = () => {
           <div className={styles.roadmapCard}>
             <span className={styles.roadmapPhase}>Phase 3</span>
             <h3>🚧 Hardware Integration</h3>
-            <p>Connect WolePass to physical boom barriers and turnstiles. Successful OTP verification triggers the gate automatically.</p>
+            <p>Connect GateKeep to physical boom barriers and turnstiles. Successful OTP verification triggers the gate automatically.</p>
           </div>
           <div className={styles.roadmapCard}>
             <span className={styles.roadmapPhase}>Phase 4</span>
@@ -220,7 +220,7 @@ const Landing = () => {
               <li>Whitelabel Options</li>
               <li>API Access</li>
             </ul>
-            <a href="mailto:hello@wolepass.com" className={styles.priceButton}>Contact Us</a>
+            <a href="mailto:hello@gatekeep.com.ng" className={styles.priceButton}>Contact Us</a>
           </div>
         </div>
       </section>
@@ -235,7 +235,7 @@ const Landing = () => {
           </p>
           <div className={styles.heroActions}>
             <Link to="/register" className={styles.ctaButton}>Claim Your Free Months</Link>
-            <a href="https://wolepass-demo.vercel.app/" target="_blank" rel="noreferrer" className={styles.demoButtonDark}>
+            <a href="https://demo.gatekeep.com.ng" target="_blank" rel="noreferrer" className={styles.demoButtonDark}>
               Try the Demo First →
             </a>
           </div>

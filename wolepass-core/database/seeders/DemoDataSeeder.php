@@ -17,10 +17,10 @@ class DemoDataSeeder extends Seeder
     private function estateConfig(): array
     {
         return [
-            // ── Estate 1: WolePass Demo ─────────────────────────────────────────
+            // ── Estate 1: GateKeep Demo ─────────────────────────────────────────
             [
-                'slug'   => 'wolepass-demo',
-                'name'   => 'WolePass Demo Estate',
+                'slug'   => 'gatekeep-demo',
+                'name'   => 'GateKeep Demo Estate',
                 'type'   => 'residential',
                 'status' => 'active',
                 'prefix' => 'demo',
@@ -61,7 +61,7 @@ class DemoDataSeeder extends Seeder
 
     public function run(): void
     {
-        $this->command->info('🌱 Seeding multi-estate WolePass demo data...');
+        $this->command->info('🌱 Seeding multi-estate GateKeep demo data...');
         $password = 'password';
 
         $residentNames = [
@@ -94,23 +94,25 @@ class DemoDataSeeder extends Seeder
 
             // 3. Estate Admin
             $admin = User::updateOrCreate(
-                ['email' => "admin@{$prefix}.wolepass.com"],
+                ['email' => "admin@{$prefix}.gatekeep.com.ng"],
                 [
                     'name'        => "{$config['name']} Admin",
                     'password'    => $password,
                     'global_role' => 'tenant_admin',
                     'tenant_id'   => $tenant->id,
+                    'is_approved' => true,
                 ]
             );
 
             // 4. Security Guard
             $guard = User::updateOrCreate(
-                ['email' => "guard@{$prefix}.wolepass.com"],
+                ['email' => "guard@{$prefix}.gatekeep.com.ng"],
                 [
                     'name'        => 'Gate Security',
                     'password'    => $password,
                     'global_role' => 'guard',
                     'tenant_id'   => $tenant->id,
+                    'is_approved' => true,
                 ]
             );
 
@@ -121,13 +123,14 @@ class DemoDataSeeder extends Seeder
                 $first = strtolower(explode(' ', $name)[0]);
 
                 $residents[] = User::updateOrCreate(
-                    ['email' => "{$first}.{$i}@{$prefix}.wolepass.com"],
+                    ['email' => "{$first}.{$i}@{$prefix}.gatekeep.com.ng"],
                     [
                         'name'        => $name,
                         'password'    => $password,
                         'global_role' => 'resident',
                         'tenant_id'   => $tenant->id,
                         'unit_id'     => $unit->id,
+                        'is_approved' => true,
                     ]
                 );
             }
@@ -193,21 +196,21 @@ class DemoDataSeeder extends Seeder
         $this->command->newLine();
         $this->command->line('  All passwords: password');
         $this->command->line('  ──────────────────────────────────────────────────────');
-        $this->command->line('  WolePass Demo   → admin@demo.wolepass.com');
-        $this->command->line('                  → guard@demo.wolepass.com');
-        $this->command->line('                  → adebayo.0@demo.wolepass.com  (resident)');
+        $this->command->line('  GateKeep Demo   → admin@demo.gatekeep.com.ng');
+        $this->command->line('                  → guard@demo.gatekeep.com.ng');
+        $this->command->line('                  → adebayo.0@demo.gatekeep.com.ng  (resident)');
         $this->command->line('  ──────────────────────────────────────────────────────');
-        $this->command->line('  Lekki Gardens   → admin@lekki.wolepass.com');
-        $this->command->line('                  → guard@lekki.wolepass.com');
-        $this->command->line('                  → adebayo.0@lekki.wolepass.com  (resident)');
+        $this->command->line('  Lekki Gardens   → admin@lekki.gatekeep.com.ng');
+        $this->command->line('                  → guard@lekki.gatekeep.com.ng');
+        $this->command->line('                  → adebayo.0@lekki.gatekeep.com.ng  (resident)');
         $this->command->line('  ──────────────────────────────────────────────────────');
-        $this->command->line('  Parkview Heights→ admin@parkview.wolepass.com');
-        $this->command->line('                  → guard@parkview.wolepass.com');
-        $this->command->line('                  → adebayo.0@parkview.wolepass.com  (resident)');
+        $this->command->line('  Parkview Heights→ admin@parkview.gatekeep.com.ng');
+        $this->command->line('                  → guard@parkview.gatekeep.com.ng');
+        $this->command->line('                  → adebayo.0@parkview.gatekeep.com.ng  (resident)');
         $this->command->line('  ──────────────────────────────────────────────────────');
-        $this->command->line('  Harmony Biz Park→ admin@harmony.wolepass.com');
-        $this->command->line('                  → guard@harmony.wolepass.com');
-        $this->command->line('                  → adebayo.0@harmony.wolepass.com  (resident)');
+        $this->command->line('  Harmony Biz Park→ admin@harmony.gatekeep.com.ng');
+        $this->command->line('                  → guard@harmony.gatekeep.com.ng');
+        $this->command->line('                  → adebayo.0@harmony.gatekeep.com.ng  (resident)');
         $this->command->line('  ──────────────────────────────────────────────────────');
     }
 }

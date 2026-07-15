@@ -36,7 +36,7 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.loginCard}>
-        <h1 className={styles.title}>WolePass</h1>
+        <h1 className={styles.title}>GateKeep</h1>
         <p className={styles.subtitle}>Sign in to your enterprise account</p>
 
         {error && <div className={styles.errorBanner}>{error}</div>}

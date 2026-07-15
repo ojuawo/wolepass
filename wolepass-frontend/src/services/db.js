@@ -1,6 +1,6 @@
 import Dexie from 'dexie';
 
-const db = new Dexie('WolePassDB');
+const db = new Dexie('GateKeepDB');
 
 db.version(1).stores({
   passes: 'otp_code, status, expected_arrival, visitor_name, destination',
