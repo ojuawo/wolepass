@@ -31,6 +31,8 @@ Route::middleware('auth:sanctum')->group(function () {
         return $request->user();
     });
 
+    Route::get('/dashboard', [VisitController::class, 'dashboardData']);
+
     // Pass generation — additionally gated by active subscription check
     Route::post('/passes', [VisitController::class, 'store'])
         ->middleware('subscription.active');

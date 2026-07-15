@@ -10,6 +10,14 @@ export default function Dashboard() {
   const [loadingPending, setLoadingPending] = useState(false);
   const [actioning, setActioning] = useState(null);
 
+  const [stats, setStats] = useState([
+    { id: 1, title: 'Loading...', value: '...', color: 'blue' },
+    { id: 2, title: 'Loading...', value: '...', color: 'green' },
+    { id: 3, title: 'Loading...', value: '...', color: 'purple' }
+  ]);
+  const [recentVisits, setRecentVisits] = useState([]);
+  const [loadingDashboard, setLoadingDashboard] = useState(true);
+
   const role = user?.global_role || 'resident';
   const isAdmin = role === 'tenant_admin';
   const isGuard = role === 'guard';
@@ -29,15 +37,32 @@ export default function Dashboard() {
     }
   }, [isAdmin]);
 
+  // 2. Fetch dynamic dashboard stats and activity
+  const fetchDashboardData = useCallback(async () => {
+    setLoadingDashboard(true);
+    try {
+      const res = await api.get('/dashboard');
+      setStats(res.data.stats || []);
+      setRecentVisits(res.data.recent_visits || []);
+    } catch (err) {
+      console.error('Failed to load dashboard statistics:', err);
+    } finally {
+      setLoadingDashboard(false);
+    }
+  }, []);
+
   useEffect(() => {
     fetchPendingResidents();
-  }, [fetchPendingResidents]);
+    fetchDashboardData();
+  }, [fetchPendingResidents, fetchDashboardData]);
 
   const handleApprove = async (residentId) => {
     setActioning(residentId);
     try {
       await api.post(`/admin/residents/${residentId}/approve`);
       setPendingResidents(prev => prev.filter(r => r.id !== residentId));
+      // Refresh stats since resident approval count changes
+      fetchDashboardData();
     } catch (err) {
       alert('Failed to approve resident.');
     } finally {
@@ -51,56 +76,12 @@ export default function Dashboard() {
     try {
       await api.post(`/admin/residents/${residentId}/reject`);
       setPendingResidents(prev => prev.filter(r => r.id !== residentId));
+      fetchDashboardData();
     } catch (err) {
       alert('Failed to decline request.');
     } finally {
       setActioning(null);
     }
-  };
-
-  // Mock data tailored per role
-  const getStats = () => {
-    if (isAdmin) {
-      return [
-        { id: 1, title: 'Active Passes Today', value: '124', color: 'blue' },
-        { id: 2, title: 'Total Residents', value: '142', color: 'green' },
-        { id: 3, title: 'Pending Approvals', value: pendingResidents.length.toString(), color: 'amber' },
-      ];
-    }
-    if (isGuard) {
-      return [
-        { id: 1, title: 'Checked-In Today', value: '47', color: 'blue' },
-        { id: 2, title: 'Checked-Out Today', value: '38', color: 'green' },
-        { id: 3, title: 'Active Onsite', value: '9', color: 'purple' },
-      ];
-    }
-    // Resident stats
-    return [
-      { id: 1, title: 'My Active Passes', value: '2', color: 'blue' },
-      { id: 2, title: 'Total Invites (Month)', value: '18', color: 'green' },
-      { id: 3, title: 'Account Status', value: 'Approved', color: 'purple' },
-    ];
-  };
-
-  const getRecentVisits = () => {
-    if (isAdmin) {
-      return [
-        { id: 101, visitor: 'Babalola John', unit: 'Block A, Suite 101', type: 'Delivery', time: '14:23 PM', status: 'Checked In' },
-        { id: 102, visitor: 'Sarah Williams', unit: 'Block B, Suite 202', type: 'Guest', time: '13:55 PM', status: 'Checked In' },
-        { id: 103, visitor: 'Michael Adeyemi', unit: 'Block C, Penthouse', type: 'Service', time: '12:40 PM', status: 'Checked In' },
-      ];
-    }
-    if (isGuard) {
-      return [
-        { id: 101, visitor: 'Babalola John', unit: 'Block A, Suite 101', type: 'Delivery', time: '14:23 PM', status: 'Checked In' },
-        { id: 102, visitor: 'Sarah Williams', unit: 'Block B, Suite 202', type: 'Guest', time: '13:55 PM', status: 'Checked In' },
-      ];
-    }
-    // Resident (strictly visits to their own unit)
-    return [
-      { id: 101, visitor: 'Babalola John', unit: 'My Unit', type: 'Delivery', time: '14:23 PM', status: 'Checked In' },
-      { id: 104, visitor: 'Chidi Okafor', unit: 'My Unit', type: 'Guest', time: '12:15 PM', status: 'Checked In' },
-    ];
   };
 
   return (
@@ -118,14 +99,14 @@ export default function Dashboard() {
 
       {/* Top Row: Stats Cards */}
       <section className={styles.statsRow}>
-        {getStats().map((stat) => (
+        {stats.map((stat) => (
           <div key={stat.id} className={`${styles.statCard} ${styles[`card_${stat.color}`]}`}>
             <span className={styles.statTitle}>{stat.title}</span>
             <span className={styles.statValue}>{stat.value}</span>
           </div>
         ))}
       </section>
-
+ 
       <div className={styles.mainGrid}>
         {/* Left/Middle Column: Recent Activity */}
         <section className={styles.sectionBox}>
@@ -144,7 +125,14 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {getRecentVisits().map((visit) => (
+                {!loadingDashboard && recentVisits.length === 0 && (
+                  <tr>
+                    <td colSpan={isResident ? 4 : 5} style={{ textAlign: 'center', color: '#64748b', padding: '2rem 0' }}>
+                      No visitor check-ins recorded yet.
+                    </td>
+                  </tr>
+                )}
+                {recentVisits.map((visit) => (
                   <tr key={visit.id}>
                     <td style={{ fontWeight: 500 }}>{visit.visitor}</td>
                     {!isResident && <td>{visit.unit}</td>}
