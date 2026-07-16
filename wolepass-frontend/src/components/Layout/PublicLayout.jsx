@@ -39,6 +39,7 @@ const PublicLayout = () => {
           <a href="/#features" onClick={(e) => handleNavClick(e, 'features')} className={styles.navLink}>Features</a>
           <a href="/#how-it-works" onClick={(e) => handleNavClick(e, 'how-it-works')} className={styles.navLink}>How It Works</a>
           <a href="/#security" onClick={(e) => handleNavClick(e, 'security')} className={styles.navLink}>Security</a>
+          <Link to="/login" className={styles.navLink}>Login</Link>
           <a href="/#pilot-form" onClick={(e) => handleNavClick(e, 'pilot-form')} className={styles.pilotCtaBtn}>
             Request a 30-Day Free Pilot
           </a>
@@ -60,6 +61,7 @@ const PublicLayout = () => {
           <a href="/#features" onClick={(e) => handleNavClick(e, 'features')} className={styles.mobileNavLink}>Features</a>
           <a href="/#how-it-works" onClick={(e) => handleNavClick(e, 'how-it-works')} className={styles.mobileNavLink}>How It Works</a>
           <a href="/#security" onClick={(e) => handleNavClick(e, 'security')} className={styles.mobileNavLink}>Security</a>
+          <Link to="/login" className={styles.mobileNavLink} onClick={() => setIsMenuOpen(false)}>Login</Link>
           <a href="/#pilot-form" onClick={(e) => handleNavClick(e, 'pilot-form')} className={styles.mobilePilotCtaBtn}>
             Request a 30-Day Free Pilot
           </a>
