@@ -2,9 +2,9 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #0b0f19; /* Sleek B2B Obsidian theme background */
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  color: #f3f4f6;
+  background-color: #ffffff; /* Clean white canvas */
+  font-family: 'Poppins', 'Roboto', sans-serif;
+  color: #000000;
 }
 
 .navbar {
@@ -15,10 +15,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 6%;
-  background: rgba(11, 15, 25, 0.85); /* Frosted obsidian glass */
+  background: rgba(255, 255, 255, 0.85); /* Frosted white glass */
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #e5e7eb; /* Subtle light gray border */
   transition: all 0.3s ease;
 }
 
@@ -27,27 +27,23 @@
   align-items: center;
   gap: 0.5rem;
   text-decoration: none;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .logoBadge {
-  font-size: 1.5rem;
-  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.5));
+  font-size: 1.4rem;
+  filter: grayscale(100%); /* Maintain black & white motif */
 }
 
 .logoText {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #000000;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, #ffffff 60%, #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .logoDot {
-  color: #10b981; /* High contrast emerald accent */
-  -webkit-text-fill-color: #10b981;
+  color: #4b5563; /* Medium gray dot */
 }
 
 /* Desktop Navigation */
@@ -59,33 +55,34 @@
 
 .navLink {
   text-decoration: none;
-  color: #94a3b8;
+  color: #4b5563; /* Soft slate gray */
   font-size: 0.95rem;
   font-weight: 500;
-  transition: color 0.25s ease, transform 0.2s ease;
+  transition: color 0.2s ease;
 }
 
 .navLink:hover {
-  color: #ffffff;
+  color: #000000; /* Crisp black hover */
 }
 
 .pilotCtaBtn {
   text-decoration: none;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: #000000; /* Solid high-contrast black */
   color: #ffffff;
   padding: 0.7rem 1.4rem;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.9rem;
   font-weight: 600;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #000000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
 }
 
 .pilotCtaBtn:hover {
-  transform: translateY(-1.5px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
-  border-color: rgba(16, 185, 129, 0.5);
+  background: #1f2937; /* Off-black/dark gray hover */
+  border-color: #1f2937;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
 /* Hamburger Button */
@@ -105,9 +102,9 @@
 .bar {
   width: 100%;
   height: 2px;
-  background-color: #cbd5e1;
+  background-color: #111827; /* Dark charcoal bar */
   border-radius: 2px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
 }
 
 /* Mobile Nav Styles */
@@ -140,7 +137,7 @@
   /* Hamburger Active Animation */
   .hamburgerActive .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
-    background-color: #ffffff;
+    background-color: #000000;
   }
 
   .hamburgerActive .bar:nth-child(2) {
@@ -149,7 +146,7 @@
 
   .hamburgerActive .bar:nth-child(3) {
     transform: translateY(-8px) rotate(-45deg);
-    background-color: #ffffff;
+    background-color: #000000;
   }
 
   /* Mobile Nav Drawer */
@@ -165,13 +162,13 @@
     width: 80%;
     max-width: 320px;
     height: 100vh;
-    background: rgba(11, 15, 25, 0.96);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    border-left: 1px solid #e5e7eb;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
     padding: 2rem;
-    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1005;
   }
 
@@ -181,26 +178,26 @@
 
   .mobileNavLink {
     text-decoration: none;
-    color: #cbd5e1;
+    color: #4b5563;
     font-size: 1.15rem;
     font-weight: 500;
     transition: color 0.2s ease;
   }
 
   .mobileNavLink:hover {
-    color: #ffffff;
+    color: #000000;
   }
 
   .mobilePilotCtaBtn {
     text-decoration: none;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: #000000;
     color: #ffffff;
     padding: 0.9rem 1.6rem;
-    border-radius: 8px;
+    border-radius: 6px;
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
     width: 100%;
-    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
   }
 }

@@ -115,10 +115,10 @@ const Landing = () => {
                       <path d="M5,5 h30 v30 h-30 z M15,15 h10 v10 h-10 z" fill="#ffffff" />
                       <path d="M65,5 h30 v30 h-30 z M75,15 h10 v10 h-10 z" fill="#ffffff" />
                       <path d="M5,65 h30 v30 h-30 z M15,75 h10 v10 h-10 z" fill="#ffffff" />
-                      <path d="M45,10 h10 v10 h-10 z M45,30 h10 v10 h-10 z M55,45 h10 v10 h-10 z" fill="#10b981" />
+                      <path d="M45,10 h10 v10 h-10 z M45,30 h10 v10 h-10 z M55,45 h10 v10 h-10 z" fill="#000000" />
                       <path d="M10,45 h10 v10 h-10 z M30,45 h10 v10 h-10 z M40,55 h10 v10 h-10 z" fill="#ffffff" />
                       <path d="M70,45 h20 v10 h-20 z M80,60 h10 v10 h-10 z M65,80 h15 v15 h-15 z" fill="#ffffff" />
-                      <path d="M45,75 h15 v10 h-15 z M50,90 h10 v5 h-10 z" fill="#10b981" />
+                      <path d="M45,75 h15 v10 h-15 z M50,90 h10 v5 h-10 z" fill="#000000" />
                     </svg>
                     <div className={styles.qrOverlay}>
                       <span className={styles.qrShield}>🛡️</span>

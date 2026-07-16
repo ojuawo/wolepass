@@ -1,12 +1,12 @@
-/* ── CORE CONSTANTS & THEMING ── */
+/* ── CORE CONSTANTS & THEMING (MONOCHROME) ── */
 .container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #0b0f19; /* Obsidian Black */
-  color: #f3f4f6;
+  background-color: #ffffff; /* White Canvas */
+  color: #000000; /* Black text */
   overflow-x: hidden;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Roboto', -apple-system, sans-serif;
 }
 
 /* Fade-in Transition */
@@ -29,10 +29,8 @@
 .heroSection {
   position: relative;
   padding: 8rem 6% 6rem;
-  background: radial-gradient(circle at 80% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 50%),
-              radial-gradient(circle at 10% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-              #0b0f19;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background-color: #f9fafb; /* Light Gray background */
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .heroLayout {
@@ -55,11 +53,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #4b5563;
   padding: 0.45rem 1.1rem;
   border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 1.75rem;
@@ -70,34 +69,33 @@
 .badgePulse {
   width: 6px;
   height: 6px;
-  background-color: #10b981;
+  background-color: #000000; /* Black pulse indicator */
   border-radius: 50%;
   display: inline-block;
-  box-shadow: 0 0 8px #10b981;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(0, 0, 0, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
 }
 
 .headline {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-  font-weight: 900;
+  font-weight: 800;
   line-height: 1.15;
   margin-bottom: 1.5rem;
   letter-spacing: -0.03em;
-  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #000000;
 }
 
 .subHeadline {
+  font-family: 'Roboto', sans-serif;
   font-size: 1.1rem;
-  color: #94a3b8;
+  color: #4b5563;
   line-height: 1.65;
   margin-bottom: 2.5rem;
   max-width: 580px;
@@ -111,57 +109,61 @@
 }
 
 .ctaButton {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  font-family: 'Montserrat', sans-serif;
+  background: #000000; /* High contrast black */
   color: #ffffff;
   padding: 1rem 2.2rem;
   font-size: 1.05rem;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: 6px;
   text-decoration: none;
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid #000000;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
   text-align: center;
   white-space: nowrap;
 }
 
 .ctaButton:hover {
+  background: #1f2937;
+  border-color: #1f2937;
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.5);
-  border-color: rgba(16, 185, 129, 0.5);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .demoButton {
+  font-family: 'Montserrat', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.03);
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   padding: 1rem 2.2rem;
   font-size: 1.05rem;
   font-weight: 600;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   white-space: nowrap;
 }
 
 .demoButton:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: #f9fafb;
+  border-color: #9ca3af;
   transform: translateY(-1px);
 }
 
 .playIcon {
-  color: #3b82f6;
+  color: #000000;
   font-size: 0.85rem;
 }
 
 .heroCaveat {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.85rem;
-  color: #64748b;
+  color: #6b7280;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -190,26 +192,27 @@
   left: 20px;
   width: 200px;
   height: 340px;
-  background: #111827;
-  border: 4px solid #1f2937;
+  background: #ffffff;
+  border: 4px solid #000000; /* Crisp black border */
   border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   z-index: 2;
   overflow: hidden;
 }
 
 .phoneHeader {
   height: 18px;
-  background: #1f2937;
+  background: #f3f4f6;
   position: relative;
   display: flex;
   justify-content: center;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .phoneSpeaker {
   width: 40px;
   height: 4px;
-  background: #374151;
+  background: #d1d5db;
   border-radius: 2px;
   margin-top: 6px;
 }
@@ -220,12 +223,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #090d16;
+  background: #ffffff;
 }
 
 .phoneAppHeader {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
-  color: #64748b;
+  color: #000000;
   margin-bottom: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -234,16 +238,17 @@
 
 .qrContainer {
   position: relative;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   padding: 0.8rem;
-  border-radius: 12px;
+  border-radius: 8px;
   width: 110px;
   height: 110px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1.25rem;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .qrSvg {
@@ -251,10 +256,16 @@
   height: 100%;
 }
 
+/* Change path fills inside component using CSS overrides */
+.qrSvg path {
+  fill: #000000 !important; /* Force black QR blocks */
+}
+
 .qrOverlay {
   position: absolute;
-  background: #090d16;
+  background: #ffffff;
   border-radius: 50%;
+  border: 2px solid #000000;
   width: 24px;
   height: 24px;
   display: flex;
@@ -264,6 +275,7 @@
 
 .qrShield {
   font-size: 0.85rem;
+  filter: grayscale(100%);
 }
 
 .passDetails {
@@ -272,48 +284,50 @@
 }
 
 .passDetails h3 {
+  font-family: 'Poppins', sans-serif;
   font-size: 0.85rem;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.25rem;
 }
 
 .passType {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.7rem;
-  color: #10b981;
+  color: #4b5563; /* Gray */
   font-weight: 600;
   margin-bottom: 0.75rem;
 }
 
 .passTime {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.65rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
   padding: 0.3rem 0.6rem;
   border-radius: 4px;
-  color: #94a3b8;
+  color: #4b5563;
   display: inline-block;
 }
 
-/* Sentry Dashboard Interface Mockup */
+/* Guard Sentry Dashboard Interface Mockup */
 .dashboardMockup {
   position: absolute;
   top: 100px;
   right: 10px;
   width: 280px;
   height: 250px;
-  background: rgba(17, 24, 39, 0.95);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   border-radius: 12px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
   z-index: 1;
   overflow: hidden;
 }
 
 .dashboardHeader {
-  background: #111827;
+  background: #f9fafb;
   padding: 0.6rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid #e5e7eb;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -329,17 +343,14 @@
   height: 6px;
   border-radius: 50%;
   display: inline-block;
-  background: #374151;
+  background: #e5e7eb; /* Neutral gray dots */
 }
 
-.dots span:nth-child(1) { background: #ef4444; }
-.dots span:nth-child(2) { background: #f59e0b; }
-.dots span:nth-child(3) { background: #10b981; }
-
 .dashboardTitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.7rem;
   font-weight: 700;
-  color: #94a3b8;
+  color: #000000;
   text-transform: uppercase;
 }
 
@@ -348,14 +359,14 @@
   align-items: center;
   gap: 0.35rem;
   font-size: 0.65rem;
-  color: #10b981;
+  color: #000000;
   font-weight: 700;
 }
 
 .statusDot {
   width: 5px;
   height: 5px;
-  background: #10b981;
+  background: #000000;
   border-radius: 50%;
   display: inline-block;
   animation: pulse 1.5s infinite;
@@ -373,26 +384,28 @@
 }
 
 .miniStat {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   padding: 0.4rem 0.6rem;
   border-radius: 6px;
 }
 
 .miniStat span {
+  font-family: 'Roboto', sans-serif;
   display: block;
   font-size: 0.6rem;
-  color: #64748b;
+  color: #6b7280;
   margin-bottom: 0.15rem;
 }
 
 .miniStat strong {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1rem;
-  color: #ffffff;
+  color: #000000;
 }
 
 .miniStat strong.activeColor {
-  color: #10b981;
+  color: #000000;
 }
 
 .activityList {
@@ -402,9 +415,10 @@
 }
 
 .activityTitle {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.65rem;
   font-weight: 700;
-  color: #64748b;
+  color: #4b5563;
   text-transform: uppercase;
   margin-bottom: 0.2rem;
 }
@@ -413,15 +427,15 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   padding: 0.4rem 0.5rem;
   border-radius: 6px;
   font-size: 0.7rem;
-  border: 1px solid rgba(255, 255, 255, 0.02);
+  border: 1px solid #e5e7eb;
 }
 
 .logTime {
-  color: #64748b;
+  color: #6b7280;
   font-size: 0.65rem;
 }
 
@@ -432,37 +446,41 @@
 }
 
 .logDetail strong {
-  color: #e2e8f0;
+  color: #000000;
 }
 
 .logDetail span {
   font-size: 0.6rem;
-  color: #64748b;
+  color: #6b7280;
 }
 
 .statusBadgeOk {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.55rem;
   font-weight: 700;
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
+  background: #f3f4f6;
+  color: #000000;
+  border: 1px solid #d1d5db;
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
 }
 
 .statusBadgeDenied {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.55rem;
   font-weight: 700;
-  background: rgba(239, 68, 68, 0.1);
-  color: #ef4444;
+  background: #ffffff;
+  color: #9ca3af;
+  border: 1px solid #e5e7eb;
   padding: 0.15rem 0.4rem;
   border-radius: 4px;
 }
 
 /* ── 2. TRUST ANCHOR / CREDIBILITY BAR ── */
 .trustSection {
-  background-color: #090d16;
+  background-color: #ffffff;
   padding: 2.25rem 6%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .trustContainer {
@@ -487,12 +505,13 @@
 
 .secureSeal {
   font-size: 1.75rem;
-  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.4));
+  filter: grayscale(100%);
 }
 
 .trustText p {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.95rem;
-  color: #cbd5e1;
+  color: #374151;
   line-height: 1.5;
   margin: 0;
 }
@@ -507,20 +526,22 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #4b5563;
 }
 
 .badgeIcon {
   font-size: 1.1rem;
+  filter: grayscale(100%);
 }
 
 /* ── 3. DUAL-BENEFIT INTERACTIVE SECTION (Core Funnel) ── */
 .benefitsSection {
   padding: 7rem 6%;
-  background-color: #0b0f19;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .sectionHeader {
@@ -531,7 +552,8 @@
 
 .sectionSubtitle {
   display: inline-block;
-  color: #3b82f6;
+  color: #4b5563;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -540,16 +562,17 @@
 }
 
 .sectionTitle {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   font-weight: 800;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 1.25rem;
   letter-spacing: -0.02em;
 }
 
 .sectionDesc {
-  color: #94a3b8;
+  font-family: 'Roboto', sans-serif;
+  color: #4b5563;
   font-size: 1.05rem;
   line-height: 1.65;
 }
@@ -566,52 +589,59 @@
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   padding: 1.5rem;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   text-align: left;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s ease;
 }
 
 .tabBtn:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: #f9fafb;
+  border-color: #d1d5db;
 }
 
 .tabBtnActive {
-  background: rgba(37, 99, 235, 0.07);
-  border-color: rgba(37, 99, 235, 0.45);
-  box-shadow: 0 0 20px rgba(37, 99, 235, 0.15);
+  background: #000000; /* Solid Black for active tab */
+  border-color: #000000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .tabIcon {
-  font-size: 2rem;
-  background: rgba(255, 255, 255, 0.03);
+  font-size: 2.0rem;
+  background: #f3f4f6;
   padding: 0.6rem;
-  border-radius: 10px;
+  border-radius: 8px;
+  filter: grayscale(100%);
 }
 
 .tabBtnActive .tabIcon {
-  background: rgba(37, 99, 235, 0.2);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .tabTextWrapper h3 {
+  font-family: 'Poppins', sans-serif;
   font-size: 1.05rem;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.25rem;
   font-weight: 700;
 }
 
+.tabBtnActive .tabTextWrapper h3 {
+  color: #ffffff; /* White text on black tab */
+}
+
 .tabTextWrapper p {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.85rem;
-  color: #64748b;
+  color: #6b7280;
   margin: 0;
 }
 
 .tabBtnActive .tabTextWrapper p {
-  color: #94a3b8;
+  color: #9ca3af;
 }
 
 .panelContainer {
@@ -627,15 +657,16 @@
 }
 
 .panelText h3 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.75rem;
   font-weight: 800;
   margin-bottom: 1rem;
-  color: #ffffff;
+  color: #000000;
 }
 
 .panelIntro {
-  color: #94a3b8;
+  font-family: 'Roboto', sans-serif;
+  color: #4b5563;
   font-size: 1.05rem;
   line-height: 1.6;
   margin-bottom: 2.25rem;
@@ -659,9 +690,9 @@
   justify-content: center;
   min-width: 24px;
   height: 24px;
-  background-color: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #10b981;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  color: #000000;
   border-radius: 50%;
   font-size: 0.8rem;
   font-weight: 700;
@@ -669,15 +700,17 @@
 }
 
 .benefitItem h4 {
+  font-family: 'Poppins', sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.35rem;
 }
 
 .benefitItem p {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.92rem;
-  color: #94a3b8;
+  color: #4b5563;
   line-height: 1.55;
   margin: 0;
 }
@@ -693,11 +726,11 @@
 .logAuditMock {
   width: 100%;
   max-width: 440px;
-  background: #111827;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 1.25rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.03);
   position: relative;
 }
 
@@ -706,20 +739,22 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.25rem;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
-  color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #000000;
+  border-bottom: 1px solid #e5e7eb;
   padding-bottom: 0.75rem;
 }
 
 .searchBarMock {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.7rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   padding: 0.35rem 0.7rem;
   border-radius: 6px;
-  color: #64748b;
+  color: #6b7280;
 }
 
 .auditTableMock {
@@ -731,9 +766,10 @@
 .auditRowHeader {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr 1fr 1fr;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.65rem;
   font-weight: 700;
-  color: #64748b;
+  color: #6b7280;
   text-transform: uppercase;
   padding-bottom: 0.25rem;
 }
@@ -741,40 +777,42 @@
 .auditRow {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr 1fr 1fr;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.75rem;
   padding: 0.6rem 0.5rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
   border-radius: 6px;
   align-items: center;
 }
 
 .auditRow span {
-  color: #94a3b8;
+  color: #4b5563;
 }
 
 .auditRow strong {
-  color: #ffffff;
+  color: #000000;
 }
 
 .auditSecuredBadge {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.65rem;
-  color: #10b981;
+  color: #000000;
   margin-top: 1.25rem;
   font-weight: 700;
-  background: rgba(16, 185, 129, 0.07);
+  background: #f3f4f6;
   padding: 0.35rem 0.75rem;
   border-radius: 30px;
-  border: 1px solid rgba(16, 185, 129, 0.15);
+  border: 1px solid #d1d5db;
 }
 
 .lockPulse {
   width: 5px;
   height: 5px;
-  background-color: #10b981;
+  background-color: #000000;
   border-radius: 50%;
   animation: pulse 1.5s infinite;
 }
@@ -783,20 +821,22 @@
 .residentsAppMock {
   width: 100%;
   max-width: 320px;
-  background: #090d16;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   border-radius: 16px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.04);
   overflow: hidden;
 }
 
 .residentsAppHeader {
-  background: #111827;
+  background: #f9fafb;
   padding: 0.9rem 1.25rem;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.85rem;
   font-weight: 700;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #000000;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .appFormMock {
@@ -813,24 +853,27 @@
 }
 
 .appInputGroup label {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.65rem;
   text-transform: uppercase;
-  color: #64748b;
+  color: #4b5563;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
 .appInputMock {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   padding: 0.7rem 0.9rem;
   border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.85rem;
-  color: #e2e8f0;
+  color: #000000;
 }
 
 .appButtonMock {
-  background: #2563eb;
+  font-family: 'Montserrat', sans-serif;
+  background: #000000;
   color: #ffffff;
   padding: 0.75rem;
   border-radius: 8px;
@@ -846,8 +889,9 @@
 }
 
 .shareOptionMock span {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.65rem;
-  color: #64748b;
+  color: #6b7280;
   display: block;
   margin-bottom: 0.5rem;
 }
@@ -859,29 +903,32 @@
 }
 
 .waBadge {
-  background: #25d366;
-  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  background: #e5e7eb;
+  color: #000000;
   padding: 0.4rem;
   font-size: 0.75rem;
   border-radius: 6px;
   font-weight: 600;
+  border: 1px solid #d1d5db;
 }
 
 .smsBadge {
-  background: #1f2937;
-  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  background: #ffffff;
+  color: #000000;
   padding: 0.4rem;
   font-size: 0.75rem;
   border-radius: 6px;
   font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid #d1d5db;
 }
 
 /* ── 4. "HOW IT WORKS" SECTION ── */
 .howItWorksSection {
   padding: 7rem 6%;
-  background-color: #090d16;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background-color: #f9fafb; /* Light Gray */
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .containerInner {
@@ -912,39 +959,40 @@
 }
 
 .stepNumber {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.25rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.0rem;
   font-weight: 900;
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
+  color: #000000;
+  background: #ffffff;
   width: 60px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 1px solid rgba(59, 130, 246, 0.25);
-  box-shadow: 0 0 15px rgba(59, 130, 246, 0.15);
+  border: 2px solid #000000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
 }
 
 .stepConnector {
   flex: 1;
   height: 2px;
-  background: linear-gradient(to right, rgba(59, 130, 246, 0.4) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: #e5e7eb;
   margin-left: 1.25rem;
 }
 
 .stepContent h3 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.75rem;
 }
 
 .stepContent p {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.95rem;
-  color: #94a3b8;
+  color: #4b5563;
   line-height: 1.65;
   margin: 0;
 }
@@ -952,8 +1000,8 @@
 /* ── 5. INFRASTRUCTURE RESILIENCE (Offline-First) ── */
 .resilienceSection {
   padding: 7rem 6%;
-  background-color: #0b0f19;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .resilienceLayout {
@@ -973,11 +1021,12 @@
 
 .resilienceBadge {
   display: inline-block;
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  color: #000000;
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
   padding: 0.4rem 1.1rem;
   border-radius: 30px;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.8rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
@@ -985,16 +1034,17 @@
 }
 
 .resilienceText h2 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 3.5vw, 2.6rem);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 1.25rem;
-  color: #ffffff;
+  color: #000000;
 }
 
 .resilienceText p {
-  color: #94a3b8;
+  font-family: 'Roboto', sans-serif;
+  color: #4b5563;
   font-size: 1.05rem;
   line-height: 1.65;
   margin-bottom: 2.5rem;
@@ -1011,29 +1061,32 @@
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   padding: 1.25rem;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .resIcon {
   font-size: 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: #f3f4f6;
   padding: 0.5rem;
-  border-radius: 8px;
+  border-radius: 6px;
+  filter: grayscale(100%);
 }
 
 .resilienceFeatureCard h4 {
+  font-family: 'Poppins', sans-serif;
   font-size: 0.98rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.35rem;
 }
 
 .resilienceFeatureCard p {
+  font-family: 'Roboto', sans-serif;
   font-size: 0.88rem;
-  color: #64748b;
+  color: #6b7280;
   line-height: 1.5;
   margin: 0;
 }
@@ -1044,11 +1097,11 @@
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  background: rgba(17, 24, 39, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   border-radius: 16px;
   padding: 3rem;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.03);
   position: relative;
   width: 100%;
   max-width: 440px;
@@ -1060,17 +1113,20 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #f9fafb;
+  border: 1px solid #d1d5db;
   padding: 1rem 2rem;
-  border-radius: 12px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   position: relative;
+  color: #000000;
 }
 
 .nodeIcon {
   font-size: 2.25rem;
+  filter: grayscale(100%);
 }
 
 .localCacheTag {
@@ -1078,8 +1134,9 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  background: #10b981;
+  background: #000000; /* Monochrome black tag */
   color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.6rem;
   text-transform: uppercase;
   font-weight: 800;
@@ -1091,7 +1148,7 @@
 .syncLine {
   width: 2px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #e5e7eb;
   position: relative;
 }
 
@@ -1101,7 +1158,7 @@
   left: 50%;
   transform: translate(-50%, -50%) rotate(90deg);
   font-size: 1.25rem;
-  color: #10b981;
+  color: #000000;
 }
 
 .pulseLine {
@@ -1110,7 +1167,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, transparent, #10b981, transparent);
+  background: linear-gradient(to bottom, transparent, #000000, transparent);
   animation: lineScan 2s linear infinite;
 }
 
@@ -1122,9 +1179,8 @@
 /* ── 6. LEAD CAPTURE FOOTER ── */
 .leadSection {
   padding: 8rem 6%;
-  background: radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
-              rgba(9, 13, 22, 0.95);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  background: #f9fafb;
+  border-top: 1px solid #e5e7eb;
 }
 
 .leadInner {
@@ -1137,16 +1193,17 @@
 }
 
 .leadInner h2 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: clamp(2rem, 4vw, 2.75rem);
   font-weight: 800;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
-  color: #ffffff;
+  color: #000000;
 }
 
 .leadSubtext {
-  color: #94a3b8;
+  font-family: 'Roboto', sans-serif;
+  color: #4b5563;
   font-size: 1.1rem;
   line-height: 1.6;
   margin-bottom: 3.5rem;
@@ -1154,11 +1211,11 @@
 
 .formContainer {
   width: 100%;
-  background: #111827;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
   padding: 2.5rem;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.04);
 }
 
 .pilotForm {
@@ -1169,15 +1226,17 @@
 }
 
 .formError {
-  background: rgba(239, 68, 68, 0.1);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  color: #f87171;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  color: #000000;
   padding: 0.75rem 1rem;
   border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.85rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  font-weight: 500;
 }
 
 .inputGroup {
@@ -1187,40 +1246,41 @@
 }
 
 .fieldLabel {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.85rem;
-  color: #cbd5e1;
+  color: #000000;
   font-weight: 600;
 }
 
 .formInput {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   padding: 0.85rem 1rem;
-  border-radius: 8px;
+  border-radius: 6px;
+  font-family: 'Roboto', sans-serif;
   font-size: 0.95rem;
-  color: #ffffff;
+  color: #000000;
   outline: none;
-  font-family: inherit;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .formInput:focus {
-  border-color: #3b82f6;
-  background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
 }
 
 .formSubmitBtn {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  font-family: 'Montserrat', sans-serif;
+  background: #000000;
   color: #ffffff;
   padding: 1rem;
   font-size: 1.05rem;
   font-weight: 700;
-  border-radius: 8px;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 6px;
+  border: 1px solid #000000;
   cursor: pointer;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: all 0.25s ease;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1228,12 +1288,14 @@
 }
 
 .formSubmitBtn:hover {
-  transform: translateY(-1.5px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.45);
+  background: #1f2937;
+  border-color: #1f2937;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .formSubmitBtn:disabled {
-  opacity: 0.65;
+  opacity: 0.5;
   cursor: not-allowed;
   transform: none;
 }
@@ -1264,9 +1326,9 @@
   justify-content: center;
   width: 56px;
   height: 56px;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #10b981;
+  background: #f3f4f6;
+  border: 2px solid #000000;
+  color: #000000;
   border-radius: 50%;
   font-size: 1.75rem;
   font-weight: 800;
@@ -1274,37 +1336,39 @@
 }
 
 .successCard h3 {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.5rem;
 }
 
 .successCard p {
-  color: #94a3b8;
+  font-family: 'Roboto', sans-serif;
+  color: #4b5563;
   font-size: 0.95rem;
   line-height: 1.5;
   margin-bottom: 1.75rem;
 }
 
 .successOutline {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
   padding: 1.25rem;
   text-align: left;
 }
 
 .successOutline p {
   margin: 0;
-  color: #cbd5e1;
+  color: #111827;
   line-height: 1.55;
   font-size: 0.88rem;
 }
 
 .successOutline strong {
-  color: #10b981;
+  font-family: 'Montserrat', sans-serif;
+  color: #000000;
   display: block;
   margin-bottom: 0.25rem;
   text-transform: uppercase;
@@ -1319,8 +1383,8 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(3, 7, 18, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent overlay */
+  backdrop-filter: blur(4px);
   z-index: 2000;
   display: flex;
   justify-content: center;
@@ -1329,14 +1393,14 @@
 }
 
 .modalContent {
-  background: #0b0f19;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
   width: 100%;
   max-width: 680px;
   padding: 2.5rem;
   position: relative;
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.1);
   animation: fadeInEffect 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
@@ -1347,25 +1411,26 @@
   background: transparent;
   border: none;
   font-size: 1.75rem;
-  color: #64748b;
+  color: #9ca3af;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .modalClose:hover {
-  color: #ffffff;
+  color: #000000;
 }
 
 .modalTitle {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.25rem;
 }
 
 .modalDesc {
-  color: #64748b;
+  font-family: 'Roboto', sans-serif;
+  color: #6b7280;
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
@@ -1382,33 +1447,33 @@
 }
 
 .progressDot {
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #475569;
+  color: #9ca3af;
   padding: 0.4rem 0.8rem;
   border-radius: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
   transition: all 0.3s ease;
 }
 
 .dotActive {
-  color: #3b82f6;
-  background: rgba(59, 130, 246, 0.08);
-  border-color: rgba(59, 130, 246, 0.35);
-  box-shadow: 0 0 12px rgba(59, 130, 246, 0.1);
+  color: #ffffff;
+  background: #000000; /* Monochrome active step dot */
+  border-color: #000000;
 }
 
 .progressLine {
   flex: 1;
   height: 2px;
-  background: rgba(255, 255, 255, 0.04);
+  background: #e5e7eb;
   margin: 0 0.5rem;
   transition: all 0.3s ease;
 }
 
 .lineActive {
-  background: rgba(59, 130, 246, 0.35);
+  background: #000000;
 }
 
 .modalBody {
@@ -1426,9 +1491,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.01);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  border-radius: 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
   padding: 1.5rem;
   height: 240px;
   overflow: hidden;
@@ -1442,21 +1507,24 @@
 }
 
 .demoTextMock h4 {
+  font-family: 'Poppins', sans-serif;
   font-size: 1.15rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #000000;
   margin-bottom: 0.75rem;
 }
 
 .demoTextMock p {
-  color: #94a3b8;
+  font-family: 'Roboto', sans-serif;
+  color: #4b5563;
   font-size: 0.9rem;
   line-height: 1.55;
   margin-bottom: 1.5rem;
 }
 
 .modalCta {
-  background: #2563eb;
+  font-family: 'Montserrat', sans-serif;
+  background: #000000;
   color: #ffffff;
   border: none;
   padding: 0.7rem 1.4rem;
@@ -1468,7 +1536,7 @@
 }
 
 .modalCta:hover {
-  background: #1d4ed8;
+  background: #1f2937;
 }
 
 /* QR Scanning Simulation inside modal */
@@ -1478,8 +1546,8 @@
   left: 0;
   width: 100%;
   height: 3px;
-  background: #ef4444;
-  box-shadow: 0 0 10px #ef4444;
+  background: #000000; /* Monochrome scanning line */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
   animation: scanVertical 2.2s linear infinite;
 }
 
@@ -1490,10 +1558,10 @@
 }
 
 .scanTargetMock {
-  border: 2px dashed rgba(239, 68, 68, 0.6);
+  border: 2px dashed #000000;
   padding: 2rem;
   border-radius: 12px;
-  color: #ef4444;
+  color: #000000;
   font-family: monospace;
   font-size: 0.8rem;
   font-weight: bold;
@@ -1510,9 +1578,9 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  color: #10b981;
+  background: #f3f4f6;
+  border: 2px solid #000000;
+  color: #000000;
   border-radius: 50%;
   font-size: 1.5rem;
   font-weight: 800;
@@ -1520,20 +1588,22 @@
 }
 
 .successVerificationMock h4 {
+  font-family: 'Poppins', sans-serif;
   font-size: 1.1rem;
-  color: #10b981;
+  color: #000000;
   margin-bottom: 1rem;
   font-weight: 800;
 }
 
 .visitorVerifyDetails {
+  font-family: 'Roboto', sans-serif;
   text-align: left;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #ffffff;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 0.8rem 1.1rem;
   font-size: 0.8rem;
-  color: #cbd5e1;
+  color: #000000;
 }
 
 .visitorVerifyDetails p {
@@ -1542,8 +1612,9 @@
 
 .syncOkLabel {
   display: inline-block;
+  font-family: 'Montserrat', sans-serif;
   font-size: 0.6rem;
-  color: #10b981;
+  color: #4b5563;
   font-weight: 700;
   text-transform: uppercase;
   margin-top: 0.75rem;
