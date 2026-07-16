@@ -2,60 +2,205 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f9fafb;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0b0f19; /* Sleek B2B Obsidian theme background */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #f3f4f6;
 }
 
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 5%;
-  background-color: #ffffff;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  padding: 1.25rem 6%;
+  background: rgba(11, 15, 25, 0.85); /* Frosted obsidian glass */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+.logoBadge {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.5));
+}
+
+.logoText {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #111827;
-  text-decoration: none;
-  letter-spacing: -0.025em;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #ffffff 60%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.navLinks {
+.logoDot {
+  color: #10b981; /* High contrast emerald accent */
+  -webkit-text-fill-color: #10b981;
+}
+
+/* Desktop Navigation */
+.desktopNav {
   display: flex;
-  gap: 1.5rem;
   align-items: center;
+  gap: 2.25rem;
 }
 
-.loginBtn {
+.navLink {
   text-decoration: none;
-  color: #4b5563;
-  font-weight: 600;
-  transition: color 0.2s;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.25s ease, transform 0.2s ease;
 }
 
-.loginBtn:hover {
-  color: #111827;
+.navLink:hover {
+  color: #ffffff;
 }
 
-.registerBtn {
+.pilotCtaBtn {
   text-decoration: none;
-  background-color: #2563eb;
-  color: white;
-  padding: 0.6rem 1.25rem;
-  border-radius: 0.5rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  padding: 0.7rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   font-weight: 600;
-  transition: background-color 0.2s;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.registerBtn:hover {
-  background-color: #1d4ed8;
+.pilotCtaBtn:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Hamburger Button */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1010;
+}
+
+.bar {
+  width: 100%;
+  height: 2px;
+  background-color: #cbd5e1;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile Nav Styles */
+.mobileNav {
+  display: none;
 }
 
 .mainContent {
   flex: 1;
   display: flex;
   flex-direction: column;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 991px) {
+  .navbar {
+    padding: 1.1rem 6%;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  /* Hamburger Active Animation */
+  .hamburgerActive .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #ffffff;
+  }
+
+  .hamburgerActive .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburgerActive .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #ffffff;
+  }
+
+  /* Mobile Nav Drawer */
+  .mobileNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background: rgba(11, 15, 25, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1005;
+  }
+
+  .mobileNavActive {
+    right: 0;
+  }
+
+  .mobileNavLink {
+    text-decoration: none;
+    color: #cbd5e1;
+    font-size: 1.15rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .mobileNavLink:hover {
+    color: #ffffff;
+  }
+
+  .mobilePilotCtaBtn {
+    text-decoration: none;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: #ffffff;
+    padding: 0.9rem 1.6rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  }
 }
