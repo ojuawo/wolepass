@@ -24,37 +24,43 @@ const MainLayout = () => {
             to="/dashboard" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            🏠 Dashboard
+            <span className={styles.navIcon}>🏠</span>
+            <span className={styles.navLabel}>Dashboard</span>
           </NavLink>
           <NavLink 
             to="/noticeboard" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            📣 Community Board
+            <span className={styles.navIcon}>📣</span>
+            <span className={styles.navLabel}>Noticeboard</span>
           </NavLink>
           <NavLink 
             to="/tickets" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            🛠️ Maintenance Hub
+            <span className={styles.navIcon}>🛠️</span>
+            <span className={styles.navLabel}>Tickets</span>
           </NavLink>
           <NavLink 
             to="/generate" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            🎫 Generate Pass
+            <span className={styles.navIcon}>🎫</span>
+            <span className={styles.navLabel}>Passes</span>
           </NavLink>
           <NavLink 
             to="/profile" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            👤 Profile
+            <span className={styles.navIcon}>👤</span>
+            <span className={styles.navLabel}>Profile</span>
           </NavLink>
           <NavLink 
             to="/settings" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
-            ⚙️ Settings
+            <span className={styles.navIcon}>⚙️</span>
+            <span className={styles.navLabel}>Settings</span>
           </NavLink>
         </nav>
 
