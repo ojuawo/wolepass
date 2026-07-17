@@ -72,10 +72,17 @@ class AuthController extends Controller
                     'subscription_status' => 'pending',
                 ]);
 
+                // 1b. Create the Admin Unit for the estate
+                $adminUnit = \App\Models\Unit::create([
+                    'tenant_id'      => $tenant->id,
+                    'unit_label'     => 'Management Office',
+                    'payment_status' => 'cleared',
+                ]);
+
                 // 2. Create the admin user bound to the new estate
                 $user = User::create([
                     'tenant_id'   => $tenant->id,
-                    'unit_id'     => null,
+                    'unit_id'     => $adminUnit->id,
                     'name'        => $request->admin_full_name,
                     'email'       => $request->admin_email,
                     'phone'       => $request->admin_phone,

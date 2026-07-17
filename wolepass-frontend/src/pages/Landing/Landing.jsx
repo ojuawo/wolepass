@@ -75,10 +75,6 @@ const Landing = () => {
       <section className={styles.heroSection}>
         <div className={styles.heroLayout}>
           <div className={styles.heroTextContent}>
-            <div className={styles.heroBadge}>
-              <span className={styles.badgePulse}></span>
-              Enterprise Grade Perimeter Security
-            </div>
             <h1 className={styles.headline}>
               Modern Access Control for Secure Communities & Offices.
             </h1>
@@ -575,6 +571,35 @@ const Landing = () => {
           </div>
         </div>
       </section>
+
+      {/* ── 7. FOOTER ── */}
+      <footer className={styles.footer}>
+        <div className={styles.footerGrid}>
+          <div className={styles.footerBrand}>
+            <h3>Gatekeep</h3>
+            <p>Premium access control for secure gated estates, offices, and high-security institutional facilities in Nigeria.</p>
+            <p className={styles.footerEmail}>support@gatekeep.com.ng</p>
+          </div>
+          
+          <div className={styles.footerLinksGroup}>
+            <h4>Product</h4>
+            <a href="#" onClick={(e) => { e.preventDefault(); setIsModalOpen(true); setDemoStep(1); }}>Access Workflow</a>
+            <a href="#pilot-form" onClick={scrollToPilotForm}>Request Pilot</a>
+            <Link to="/login">Client Login</Link>
+          </div>
+
+          <div className={styles.footerLinksGroup}>
+            <h4>Legal</h4>
+            <Link to="/terms">Terms of Service</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <a href="#security">Security Audit</a>
+          </div>
+        </div>
+        
+        <div className={styles.footerBottom}>
+          <p>© {new Date().getFullYear()} Gatekeep VMS. All rights reserved.</p>
+        </div>
+      </footer>
 
       {/* ── INTERACTIVE WORKFLOW MODAL ── */}
       {isModalOpen && (

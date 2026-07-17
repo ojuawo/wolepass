@@ -14,6 +14,8 @@ import Landing from './pages/Landing/Landing';
 import Noticeboard from './pages/Noticeboard/Noticeboard';
 import Tickets from './pages/Tickets/Tickets';
 import Register from './pages/Register/Register';
+import Terms from './pages/Legal/Terms';
+import Privacy from './pages/Legal/Privacy';
 
 function App() {
   return (
@@ -24,6 +26,8 @@ function App() {
           <Route element={<PublicLayout />}>
             <Route index path="/" element={<Landing />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
           </Route>
 
           {/* Standalone Public Routes (no nav shell) */}

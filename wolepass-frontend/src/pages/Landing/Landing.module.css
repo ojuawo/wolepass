@@ -1633,6 +1633,32 @@
     text-align: center;
   }
 
+  .mockupContainer {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+
+  .phoneMockup, .dashboardMockup {
+    position: static !important;
+    width: 100% !important;
+    max-width: 290px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .phoneMockup {
+    height: 340px !important;
+  }
+
+  .dashboardMockup {
+    height: auto !important;
+    min-height: 250px !important;
+  }
+
   .subHeadline {
     margin-left: auto;
     margin-right: auto;
@@ -1739,5 +1765,98 @@
   .progressDot {
     font-size: 0.65rem;
     padding: 0.3rem 0.6rem;
+  }
+}
+
+/* ── 7. FOOTER STYLES ── */
+.footer {
+  background-color: #f9fafb;
+  padding: 5rem 6% 2.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.footerGrid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+}
+
+.footerBrand h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.footerBrand p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92rem;
+  color: #4b5563;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+  max-width: 360px;
+}
+
+.footerEmail {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #000000 !important;
+}
+
+.footerLinksGroup h4 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footerLinksGroup a {
+  display: block;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.92rem;
+  color: #4b5563;
+  text-decoration: none;
+  margin-bottom: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.footerLinksGroup a:hover {
+  color: #000000;
+}
+
+.footerBottom {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.footerBottom p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .footer {
+    padding: 4rem 6% 2rem;
+  }
+
+  .footerBottom {
+    margin-top: 2.5rem;
   }
 }

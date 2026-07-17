@@ -52,7 +52,11 @@ INSERT INTO `units` (`id`, `tenant_id`, `unit_label`, `payment_status`, `created
 ('a2447f39-0396-4af8-9e5a-bd4fe8665ad0', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'Penthouse', 'cleared', '2026-07-15 21:25:59', '2026-07-15 21:25:59'),
 ('a2447f3b-a589-4ff9-9d18-a87a98cf1184', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'Office 101', 'cleared', '2026-07-15 21:26:00', '2026-07-15 21:26:00'),
 ('a2447f3b-a80f-4e7c-9bb5-29d2d8875ff4', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'Office 202', 'cleared', '2026-07-15 21:26:00', '2026-07-15 21:26:00'),
-('a2447f3b-ab4f-4bb2-9afd-9ca196eec29f', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'Office 303', 'cleared', '2026-07-15 21:26:00', '2026-07-15 21:26:00');
+('a2447f3b-ab4f-4bb2-9afd-9ca196eec29f', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'Office 303', 'cleared', '2026-07-15 21:26:00', '2026-07-15 21:26:00'),
+('a2447f34-986d-41f0-82c7-adminunit111', 'a2447f34-986d-41f0-82c7-29d58387ac79', 'Management Office', 'cleared', '2026-07-15 21:25:56', '2026-07-15 21:25:56'),
+('a2447f36-b16e-4ccc-a9e2-adminunit222', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', 'Management Office', 'cleared', '2026-07-15 21:25:57', '2026-07-15 21:25:57'),
+('a2447f38-f5b6-488d-987e-adminunit333', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'Management Office', 'cleared', '2026-07-15 21:25:59', '2026-07-15 21:25:59'),
+('a2447f3b-a31b-414e-8fb9-adminunit444', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'Management Office', 'cleared', '2026-07-15 21:26:00', '2026-07-15 21:26:00');
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
@@ -78,25 +82,25 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `users` (`id`, `tenant_id`, `unit_id`, `name`, `email`, `phone`, `email_verified_at`, `password`, `global_role`, `remember_token`, `created_at`, `updated_at`, `is_approved`) VALUES
-('a2447f35-2db6-4a69-ab8c-125313d98058', 'a2447f34-986d-41f0-82c7-29d58387ac79', NULL, 'GateKeep Demo Estate Admin', 'admin@demo.gatekeep.com.ng', NULL, NULL, '$2y$12$KGgA0pan3z.S4lXTp3TdCuH/tfBRQCTApIwuyfUQTfRBfwBhziNk.', 'tenant_admin', NULL, '2026-07-15 21:25:56', '2026-07-15 21:25:56', 1),
+('a2447f35-2db6-4a69-ab8c-125313d98058', 'a2447f34-986d-41f0-82c7-29d58387ac79', 'a2447f34-986d-41f0-82c7-adminunit111', 'GateKeep Demo Estate Admin', 'admin@demo.gatekeep.com.ng', NULL, NULL, '$2y$12$KGgA0pan3z.S4lXTp3TdCuH/tfBRQCTApIwuyfUQTfRBfwBhziNk.', 'tenant_admin', NULL, '2026-07-15 21:25:56', '2026-07-15 21:25:56', 1),
 ('a2447f35-9973-4ba3-99c4-301543f4c8c6', 'a2447f34-986d-41f0-82c7-29d58387ac79', NULL, 'Gate Security', 'guard@demo.gatekeep.com.ng', NULL, NULL, '$2y$12$ODFXBN.5Dia86YgeK/EAiuSwPaQHZ1ha9VFf7pQfyeJSHzFKWIw4e', 'guard', NULL, '2026-07-15 21:25:56', '2026-07-15 21:25:56', 1),
 ('a2447f35-f459-4c2e-bb08-af8250122d5d', 'a2447f34-986d-41f0-82c7-29d58387ac79', 'a2447f34-c5e3-45cc-aee0-ca76af9fc269', 'Adebayo Okafor', 'adebayo.0@demo.gatekeep.com.ng', NULL, NULL, '$2y$12$3Tp01bnPZ1XT9XQfjKhRMetBABjcI.VnmcWGzvNpuBP6hO1tJllOi', 'resident', NULL, '2026-07-15 21:25:57', '2026-07-15 21:25:57', 1),
 ('a2447f36-49c9-4908-b0b1-d2bcf4dae2b6', 'a2447f34-986d-41f0-82c7-29d58387ac79', 'a2447f34-d53d-439c-bef7-09268319ee0a', 'Chioma Nwosu', 'chioma.1@demo.gatekeep.com.ng', NULL, NULL, '$2y$12$1wXjLVeiW.fCOnV20fCBje3A/l6.sSPih5DnpvBBTTiYasxK9K8e6', 'resident', NULL, '2026-07-15 21:25:57', '2026-07-15 21:25:57', 1),
 ('a2447f36-9e06-414b-9192-7dc4d620ee2a', 'a2447f34-986d-41f0-82c7-29d58387ac79', 'a2447f34-d7b2-46a0-a284-d1a97634ffc3', 'Emeka Eze', 'emeka.2@demo.gatekeep.com.ng', NULL, NULL, '$2y$12$5mOkSUmiB2OiC5MUCO.d9ulyStxiHcQf1fHvJ/kXZRw3ShtMz6y2e', 'resident', NULL, '2026-07-15 21:25:57', '2026-07-15 21:25:57', 1),
-('a2447f37-0a81-472e-9e75-cbbac86ae05e', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', NULL, 'Lekki Gardens Estate Admin', 'admin@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$IkPDBzPCCWDWzquguWRInuLVR99Y.H03b/btrD6.bUzroqBhRJvg.', 'tenant_admin', NULL, '2026-07-15 21:25:57', '2026-07-15 21:25:57', 1),
+('a2447f37-0a81-472e-9e75-cbbac86ae05e', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', 'a2447f36-b16e-4ccc-a9e2-adminunit222', 'Lekki Gardens Estate Admin', 'admin@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$IkPDBzPCCWDWzquguWRInuLVR99Y.H03b/btrD6.bUzroqBhRJvg.', 'tenant_admin', NULL, '2026-07-15 21:25:57', '2026-07-15 21:25:57', 1),
 ('a2447f37-6366-4732-80b0-cf1a90af9ad9', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', NULL, 'Gate Security', 'guard@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$Mopr3HkdLgMUKg9ZAEw35.llHjQdpkbjkB7tAUbkdTeDBDY6lpF.y', 'guard', NULL, '2026-07-15 21:25:58', '2026-07-15 21:25:58', 1),
 ('a2447f37-c31b-4721-89aa-e97348b017a7', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', 'a2447f36-b3ed-4e8f-a9c2-b68873720568', 'Adebayo Okafor', 'adebayo.0@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$bnhH6jmpme1y71qpR75zEeGoZM2dnqGt4/HlqpHKEzzbDlQVOlmNu', 'resident', NULL, '2026-07-15 21:25:58', '2026-07-15 21:25:58', 1),
 ('a2447f38-2163-44e2-adb1-edfd6b77b7e1', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', 'a2447f36-b5fe-4083-b227-fb101ad6f3b8', 'Chioma Nwosu', 'chioma.1@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$AVU5AIM3RxaFH5jjWg6KS.FijdAK9gEzOYA9/kQU4X/uUyhblTBga', 'resident', NULL, '2026-07-15 21:25:58', '2026-07-15 21:25:58', 1),
 ('a2447f38-8252-41c7-9844-bc6f9fa5e8dc', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', 'a2447f36-b80e-48de-8cb8-6226b314df17', 'Emeka Eze', 'emeka.2@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$.Ro6/r/hwTP3YlW4G97GVeMAntJSheMcSSrQ73cyp7o3vSL6pApii', 'resident', NULL, '2026-07-15 21:25:58', '2026-07-15 21:25:58', 1),
 ('a2447f38-deae-462f-992d-4afc7b89f9ad', 'a2447f36-b16e-4ccc-a9e2-9924f1ea52c2', 'a2447f36-ba40-4854-9545-d6d4546b30b6', 'Fatima Musa', 'fatima.3@lekki.gatekeep.com.ng', NULL, NULL, '$2y$12$fPsIuyh748wTF/lO2TH.cOGKakGsVcCYRJV8dlf6N8O2ROwJCkhN2', 'resident', NULL, '2026-07-15 21:25:59', '2026-07-15 21:25:59', 1),
-('a2447f39-61cd-4117-8081-9e23a8392b11', 'a2447f38-f5b6-488d-987e-086b3b6597f4', NULL, 'Parkview Heights Admin', 'admin@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$/6MWjLb296RNmRc.MhxSTOftfCjhbAAQQpWlxgfiWWDO5FAw60srK', 'tenant_admin', NULL, '2026-07-15 21:25:59', '2026-07-15 21:25:59', 1),
+('a2447f39-61cd-4117-8081-9e23a8392b11', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f38-f5b6-488d-987e-adminunit333', 'Parkview Heights Admin', 'admin@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$/6MWjLb296RNmRc.MhxSTOftfCjhbAAQQpWlxgfiWWDO5FAw60srK', 'tenant_admin', NULL, '2026-07-15 21:25:59', '2026-07-15 21:25:59', 1),
 ('a2447f39-bff3-46f0-bcff-517e6c735b55', 'a2447f38-f5b6-488d-987e-086b3b6597f4', NULL, 'Gate Security', 'guard@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$IRDAWCOoWuFqrHulQizjKeS0vsrDbRAeTShncG2aH14fyrWiFR916', 'guard', NULL, '2026-07-15 21:25:59', '2026-07-15 21:25:59', 1),
 ('a2447f3a-21e9-4435-861c-351386ad161a', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f38-f882-4ed4-adb1-57a9a775a9d6', 'Adebayo Okafor', 'adebayo.0@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$.X4YvbcK0R2YQRCKXM2M4OvKs0ZGdaVohWZRC0.tcpavRRg0jNq7S', 'resident', NULL, '2026-07-15 21:25:59', '2026-07-15 21:25:59', 1),
-('a2447f3a-7e21-4ccb-9faa-de84bf7e2665', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f38-fafb-4065-a2ad-7945a18cdf97', 'Chioma Nwosu', 'chioma.1@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$pJm1SOmCBMeQsFtjs1t4ZuGEJXKrZOv1EIn9Kodmr4Pe1j7V4fKEK', 'resident', NULL, '2026-07-15 21:26:00', '2026-07-15 21:26:00', 1),
+('a2447f3a-7e21-4ccb-9faa-de84bf7e2665', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f38-fafb-4065-a2ad-7945a18cdf97', 'Chioma Nwosu', 'chioma.1@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$pJm1SOmCBMeQsFtjs1t4ZuGEJXKrZOv1EIn9Kodmr4Pe1j7V4fKEK', 'resident', NULL, '2026-07-16 00:00:00', '2026-07-16 00:00:00', 1),
 ('a2447f3a-d7d7-4a19-80da-67a2661b4beb', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f38-fe0a-4090-a974-b640499ba6b2', 'Emeka Eze', 'emeka.2@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$vz88Otmwp9qWfyQiVNb/iuDsHS/I9kfvuadu9DnXSs83Myjm0iaby', 'resident', NULL, '2026-07-15 21:26:00', '2026-07-15 21:26:00', 1),
 ('a2447f3b-3317-497c-9664-71d5488261b9', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f39-009f-47a7-8dd7-d84aa2380825', 'Fatima Musa', 'fatima.3@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$q/8a..yPWplhAhWShTS0fupGBG6TpEQvw5LUsoqsxCj8fEItG6cT6', 'resident', NULL, '2026-07-15 21:26:00', '2026-07-15 21:26:00', 1),
 ('a2447f3b-8e63-4d05-ae0d-e125b3bb13df', 'a2447f38-f5b6-488d-987e-086b3b6597f4', 'a2447f39-0396-4af8-9e5a-bd4fe8665ad0', 'Gbenga Adeyemi', 'gbenga.4@parkview.gatekeep.com.ng', NULL, NULL, '$2y$12$eDSz5XOT9.caveOM.EVIHOZ6IAd/yATWuSQ6HLR.T.umu3YloQJiy', 'resident', NULL, '2026-07-15 21:26:00', '2026-07-15 21:26:00', 1),
-('a2447f3c-040f-433c-8116-761ff5471ad2', 'a2447f3b-a31b-414e-8fb9-2540716e63af', NULL, 'Harmony Business Park Admin', 'admin@harmony.gatekeep.com.ng', NULL, NULL, '$2y$12$UWzwLwsTHkU0rPBfDU4dCeniPUwzYLfWi3t7Do0R5vVcYUnURiYIq', 'tenant_admin', NULL, '2026-07-15 21:26:01', '2026-07-15 21:26:01', 1),
+('a2447f3c-040f-433c-8116-761ff5471ad2', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'a2447f3b-a31b-414e-8fb9-adminunit444', 'Harmony Business Park Admin', 'admin@harmony.gatekeep.com.ng', NULL, NULL, '$2y$12$UWzwLwsTHkU0rPBfDU4dCeniPUwzYLfWi3t7Do0R5vVcYUnURiYIq', 'tenant_admin', NULL, '2026-07-15 21:26:01', '2026-07-15 21:26:01', 1),
 ('a2447f3c-5fab-454e-b633-e57874febf38', 'a2447f3b-a31b-414e-8fb9-2540716e63af', NULL, 'Gate Security', 'guard@harmony.gatekeep.com.ng', NULL, NULL, '$2y$12$EHKhS4Ap82YpXXQ9fwm.MOY7Z6z1zjM.fFQ7c8ECKrZrI7NsUwqei', 'guard', NULL, '2026-07-15 21:26:01', '2026-07-15 21:26:01', 1),
 ('a2447f3c-be5f-4f2e-b4b3-4d79700612d4', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'a2447f3b-a589-4ff9-9d18-a87a98cf1184', 'Adebayo Okafor', 'adebayo.0@harmony.gatekeep.com.ng', NULL, NULL, '$2y$12$l4DJHW9rycSNTBkNdu7SKeIIzKUJMwl/eGt.ntQVaiQMcsoDq4s42', 'resident', NULL, '2026-07-15 21:26:01', '2026-07-15 21:26:01', 1),
 ('a2447f3d-2902-40c1-a461-278ef0f661e1', 'a2447f3b-a31b-414e-8fb9-2540716e63af', 'a2447f3b-a80f-4e7c-9bb5-29d2d8875ff4', 'Chioma Nwosu', 'chioma.1@harmony.gatekeep.com.ng', NULL, NULL, '$2y$12$ZpXNz/GU7k52BCF7708ny.2LEOxPTGuW4PuvV5sT/LyhzyOW.4uBu', 'resident', NULL, '2026-07-15 21:26:01', '2026-07-15 21:26:01', 1),
@@ -213,7 +217,7 @@ DROP TABLE IF EXISTS `visits`;
 CREATE TABLE `visits` (
   `id` char(36) NOT NULL,
   `tenant_id` char(36) NOT NULL,
-  `unit_id` char(36) DEFAULT NULL,
+  `unit_id` char(36) NOT NULL,
   `host_id` char(36) NOT NULL,
   `visitor_id` char(36) DEFAULT NULL,
   `visit_type` varchar(255) NOT NULL,

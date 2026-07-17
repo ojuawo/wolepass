@@ -37,13 +37,24 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+        // 2b. Create a unique Admin Unit for this estate
+        $adminUnit = Unit::firstOrCreate(
+            [
+                'tenant_id'  => $tenant->id,
+                'unit_label' => 'Management Office',
+            ],
+            [
+                'payment_status' => 'cleared',
+            ]
+        );
+
         // 3. Create the tenant admin account
         User::firstOrCreate(
             ['email' => 'admin@gatekeep.com.ng'],
             [
                 'name'        => 'Olamide Admin',
                 'tenant_id'   => $tenant->id,
-                'unit_id'     => $unit->id,
+                'unit_id'     => $adminUnit->id,
                 'password'    => Hash::make('password'),
                 'global_role' => 'tenant_admin',
                 'phone'       => null,

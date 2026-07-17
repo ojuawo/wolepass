@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('visits', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('tenant_id')->constrained('tenants')->cascadeOnDelete();
-            $table->foreignUuid('unit_id')->nullable()->constrained('units')->cascadeOnDelete();
+            $table->foreignUuid('unit_id')->constrained('units')->cascadeOnDelete();
             $table->foreignUuid('host_id')->constrained('users')->cascadeOnDelete();
             $table->foreignUuid('visitor_id')->nullable()->constrained('visitors')->nullOnDelete();
             $table->enum('visit_type', ['personal', 'dispatch', 'service', 'meeting', 'interview']);
