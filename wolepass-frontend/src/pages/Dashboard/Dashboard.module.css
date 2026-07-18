@@ -89,6 +89,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  min-width: 0;
 }
 
 .sectionTitle {
@@ -99,7 +100,9 @@
 }
 
 .tableWrapper {
+  width: 100%;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .activityTable {
@@ -243,5 +246,11 @@
 
   .sectionBox {
     padding: 1rem;
+  }
+
+  .activityTable th,
+  .activityTable td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.8rem;
   }
 }
