@@ -25,42 +25,42 @@ const MainLayout = () => {
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.navIcon}>🏠</span>
-            <span className={styles.navLabel}>Dashboard</span>
+            <span className={styles.navText}>Dashboard</span>
           </NavLink>
           <NavLink 
             to="/noticeboard" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.navIcon}>📣</span>
-            <span className={styles.navLabel}>Noticeboard</span>
+            <span className={styles.navText}>Board</span>
           </NavLink>
           <NavLink 
             to="/tickets" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.navIcon}>🛠️</span>
-            <span className={styles.navLabel}>Tickets</span>
+            <span className={styles.navText}>Tickets</span>
           </NavLink>
           <NavLink 
             to="/generate" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.navIcon}>🎫</span>
-            <span className={styles.navLabel}>Passes</span>
+            <span className={styles.navText}>Generate</span>
           </NavLink>
           <NavLink 
             to="/profile" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.navIcon}>👤</span>
-            <span className={styles.navLabel}>Profile</span>
+            <span className={styles.navText}>Profile</span>
           </NavLink>
           <NavLink 
             to="/settings" 
             className={({isActive}) => isActive ? `${styles.navItem} ${styles.active}` : styles.navItem}
           >
             <span className={styles.navIcon}>⚙️</span>
-            <span className={styles.navLabel}>Settings</span>
+            <span className={styles.navText}>Settings</span>
           </NavLink>
         </nav>
 
