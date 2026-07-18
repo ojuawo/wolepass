@@ -229,3 +229,19 @@
   padding: 2.5rem;
   color: #64748b;
 }
+
+@media (max-width: 768px) {
+  .dashboardContainer {
+    padding: 1rem 0.5rem;
+    gap: 1.5rem;
+  }
+
+  .statsRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .sectionBox {
+    padding: 1rem;
+  }
+}

@@ -54,6 +54,7 @@
 }
 
 .input {
+  width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   border: 1.5px solid #e2e8f0;
@@ -68,6 +69,7 @@
 }
 
 .inputReadOnly {
+  width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 8px;
   border: 1.5px solid #edf2f7;
@@ -140,8 +142,17 @@
   border: 1px solid #bbf7d0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem 0.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
   .formGrid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
