@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie', '*'],
 
     'allowed_methods' => ['*'],
 
@@ -23,6 +23,7 @@ return [
         'http://localhost:5173',
         'http://localhost:3000',
         'https://gatekeep.com.ng',
+        'https://www.gatekeep.com.ng',
         'https://demo.gatekeep.com.ng',
     ],
 
@@ -36,6 +37,6 @@ return [
 
     'max_age' => 86400,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

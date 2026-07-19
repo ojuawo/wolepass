@@ -27,7 +27,19 @@ const Login = () => {
         navigate('/dashboard');
       }
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
+      const status = err.response?.status;
+      if (status === 419) {
+        setError('CSRF Token Mismatch / Session expired. Please refresh the page and try again.');
+        console.error('Session/CSRF error (419):', err);
+      } else if (status === 403) {
+        setError('Access denied or CORS barrier encountered. Contact system administrator.');
+        console.error('CORS/Access error (403):', err);
+      } else if (status === 422 || status === 401) {
+        setError(err.response?.data?.message || 'Invalid credentials. Please try again.');
+      } else {
+        setError('An unexpected error occurred. Please try again later.');
+        console.error('Authentication error:', err);
+      }
     } finally {
       setIsLoading(false);
     }

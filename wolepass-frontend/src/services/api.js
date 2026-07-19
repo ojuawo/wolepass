@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+axios.defaults.withCredentials = true;
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'https://gatekeep.com.ng/api',
+  withCredentials: true,
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
