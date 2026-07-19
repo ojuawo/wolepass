@@ -96,34 +96,24 @@ const Landing = () => {
 
           <div className={styles.heroVisualContent}>
             <div className={styles.mockupContainer}>
-              {/* Resident QR Mobile Screen Mockup */}
+              {/* Resident OTP Mobile Screen Mockup */}
               <div className={styles.phoneMockup}>
                 <div className={styles.phoneHeader}>
                   <div className={styles.phoneSpeaker}></div>
                 </div>
                 <div className={styles.phoneScreen}>
                   <div className={styles.phoneAppHeader}>
-                    <span>Gatekeep Pass</span>
+                    <span>Pass Generated</span>
                   </div>
-                  <div className={styles.qrContainer}>
-                    <svg viewBox="0 0 100 100" className={styles.qrSvg}>
-                      {/* Stylized QR Code SVG */}
-                      <path d="M5,5 h30 v30 h-30 z M15,15 h10 v10 h-10 z" fill="#ffffff" />
-                      <path d="M65,5 h30 v30 h-30 z M75,15 h10 v10 h-10 z" fill="#ffffff" />
-                      <path d="M5,65 h30 v30 h-30 z M15,75 h10 v10 h-10 z" fill="#ffffff" />
-                      <path d="M45,10 h10 v10 h-10 z M45,30 h10 v10 h-10 z M55,45 h10 v10 h-10 z" fill="#000000" />
-                      <path d="M10,45 h10 v10 h-10 z M30,45 h10 v10 h-10 z M40,55 h10 v10 h-10 z" fill="#ffffff" />
-                      <path d="M70,45 h20 v10 h-20 z M80,60 h10 v10 h-10 z M65,80 h15 v15 h-15 z" fill="#ffffff" />
-                      <path d="M45,75 h15 v10 h-15 z M50,90 h10 v5 h-10 z" fill="#000000" />
-                    </svg>
-                    <div className={styles.qrOverlay}>
-                      <span className={styles.qrShield}>🛡️</span>
-                    </div>
+                  <div className={styles.otpBoxMock}>
+                    <span className={styles.otpLabelMock}>OTP CODE</span>
+                    <span className={styles.otpTextMock}>174282</span>
                   </div>
-                  <div className={styles.passDetails}>
-                    <h3>Visitor: Tolu Adebayo</h3>
+                  <div className={styles.shareBoxMock}>
+                    <p className={styles.shareTextMock}>Your GateKeep Pass for Block A, Suite 101 is: 174282. Show this at the gate.</p>
+                  </div>
+                  <div className={styles.passDetails} style={{ marginTop: '0.5rem' }}>
                     <p className={styles.passType}>Residential Access Pass</p>
-                    <div className={styles.passTime}>Expires Today, 6:00 PM</div>
                   </div>
                 </div>
               </div>
@@ -333,15 +323,15 @@ const Landing = () => {
                     <div className={styles.benefitItem}>
                       <div className={styles.benefitIconWrapper}>✓</div>
                       <div>
-                        <h4>Instant QR & SMS Invites</h4>
-                        <p>Pre-authorize guests via WhatsApp or SMS in two clicks. The system issues a secure, one-time-use pass code directly to the visitor's phone.</p>
+                        <h4>Instant OTP & SMS Invites</h4>
+                        <p>Pre-authorize guests via WhatsApp or SMS in two clicks. The system issues a secure, 6-digit OTP passcode directly to the visitor's phone.</p>
                       </div>
                     </div>
                     <div className={styles.benefitItem}>
                       <div className={styles.benefitIconWrapper}>✓</div>
                       <div>
                         <h4>Zero Gate Bottlenecks</h4>
-                        <p>Guests display their QR code to the guard. The sentry scans and verifies in 3 seconds. Traffic flows smoothly and visitors enter without friction.</p>
+                        <p>Guests present their 6-digit OTP to the guard. The sentry types the code to verify in 3 seconds. Traffic flows smoothly and visitors enter without friction.</p>
                       </div>
                     </div>
                     <div className={styles.benefitItem}>
@@ -419,7 +409,7 @@ const Landing = () => {
               </div>
               <div className={styles.stepContent}>
                 <h3>Verify</h3>
-                <p>The sentry at the gate uses a smartphone, tablet, or laptop to instantly scan the visitor's QR code or type in their unique passcode to check authorization status.</p>
+                <p>The sentry at the gate uses a smartphone, tablet, or laptop to verify the guest by typing their unique 6-digit OTP passcode into the terminal.</p>
               </div>
             </div>
 
@@ -623,17 +613,19 @@ const Landing = () => {
                   <div className={styles.demoVisualMock}>
                     <div className={styles.residentsAppMock} style={{ margin: '0 auto', maxWidth: '280px' }}>
                       <div className={styles.residentsAppHeader}><span>Pass Generated</span></div>
-                      <div style={{ padding: '1.5rem', textAlign: 'center', background: '#111827' }}>
-                        <span style={{ fontSize: '3rem' }}>🎟️</span>
-                        <h4 style={{ margin: '0.5rem 0', color: '#fff' }}>Access Code: GK-9082</h4>
-                        <p style={{ fontSize: '0.85rem', color: '#94a3b8' }}>Sent to Kolawole Johnson via SMS</p>
+                      <div style={{ padding: '1.25rem 1rem', textAlign: 'center', background: '#111827', borderRadius: '0 0 8px 8px' }}>
+                        <div style={{ backgroundColor: '#ecfdf5', border: '2px dashed #10b981', padding: '0.8rem', borderRadius: '6px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.2rem', marginBottom: '0.8rem' }}>
+                          <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#047857', letterSpacing: '0.05em' }}>OTP CODE</span>
+                          <span style={{ fontSize: '1.8rem', fontWeight: 800, color: '#064e3b', letterSpacing: '0.08em', margin: 0, lineHeight: 1.1 }}>174282</span>
+                        </div>
+                        <p style={{ fontSize: '0.75rem', color: '#94a3b8', margin: 0, lineHeight: 1.4 }}>Your GateKeep Pass for Block A, Suite 101 is: 174282.</p>
                       </div>
                     </div>
                   </div>
                   <div className={styles.demoTextMock}>
-                    <h4>Step 1: Host creates a pass</h4>
-                    <p>The host resident generates a secure passcode via the web app. The visitor receives the details instantly via WhatsApp or SMS, ready to present at the gate.</p>
-                    <button className={styles.modalCta} onClick={() => setDemoStep(2)}>Next: Sentry Scan →</button>
+                    <h4>Step 1: Host generates pass</h4>
+                    <p>The host resident generates a secure passcode via the web app. The visitor receives the details instantly via WhatsApp or SMS, ready to show at the gate.</p>
+                    <button className={styles.modalCta} onClick={() => setDemoStep(2)}>Next: Sentry OTP Entry →</button>
                   </div>
                 </div>
               )}
@@ -642,16 +634,22 @@ const Landing = () => {
                 <div className={styles.demoStepBody}>
                   <div className={styles.demoVisualMock}>
                     <div className={styles.phoneMockup} style={{ margin: '0 auto', maxWidth: '240px' }}>
-                      <div className={styles.phoneScreen} style={{ height: '320px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: '#090d16' }}>
-                        <span className={styles.scanningLine}></span>
-                        <div className={styles.scanTargetMock}>[ QR CODE ]</div>
-                        <p style={{ color: '#fff', fontSize: '0.85rem', marginTop: '1rem' }}>Scanning visitor pass...</p>
+                      <div className={styles.phoneScreen} style={{ height: '320px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: '#090d16', padding: '1.5rem' }}>
+                        <div style={{ width: '100%', textAlign: 'center', background: '#1e293b', border: '1px solid #475569', borderRadius: '8px', padding: '1rem 0.5rem' }}>
+                          <p style={{ color: '#94a3b8', fontSize: '0.7rem', margin: '0 0 0.5rem 0' }}>Enter visitor's 6-digit OTP:</p>
+                          <div style={{ background: '#0f172a', border: '1px solid #334155', color: '#38bdf8', padding: '0.5rem', borderRadius: '6px', fontSize: '1.3rem', fontWeight: 'bold', letterSpacing: '0.15em', textAlign: 'center', width: '90%', margin: '0 auto' }}>
+                            174282
+                          </div>
+                          <div style={{ background: '#2563eb', color: '#fff', padding: '0.5rem', borderRadius: '6px', fontSize: '0.75rem', marginTop: '0.8rem', fontWeight: 600, textAlign: 'center' }}>
+                            Confirm Check-In
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                   <div className={styles.demoTextMock}>
-                    <h4>Step 2: Sentry Scans Pass</h4>
-                    <p>At the gate, the guard points the camera terminal at the visitor's QR code. The app decodes, matches records, and fetches authorization details in milliseconds.</p>
+                    <h4>Step 2: Sentry Enters OTP</h4>
+                    <p>At the gate, the visitor presents their 6-digit passcode. The guard types it into the sentry terminal to match database records and confirm status instantly.</p>
                     <button className={styles.modalCta} onClick={() => setDemoStep(3)}>Next: Verify & Secure →</button>
                   </div>
                 </div>
@@ -665,8 +663,8 @@ const Landing = () => {
                       <h4>ACCESS GRANTED</h4>
                       <div className={styles.visitorVerifyDetails}>
                         <p><strong>Visitor:</strong> Kolawole Johnson</p>
-                        <p><strong>Destination:</strong> Apartment 4B</p>
-                        <p><strong>Logged:</strong> Just now (16 Jul, 01:49)</p>
+                        <p><strong>Destination:</strong> Block A, Suite 101</p>
+                        <p><strong>Logged:</strong> Just now (16 Jul, 15:42)</p>
                       </div>
                       <span className={styles.syncOkLabel}>Synced to Cloud</span>
                     </div>
