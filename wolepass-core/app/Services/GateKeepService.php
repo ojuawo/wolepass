@@ -38,6 +38,19 @@ class GateKeepService
                     'full_name' => $data['full_name'] ?? null,
                 ]
             );
+
+            // Update full_name if it was previously empty or has changed
+            if (!empty($data['full_name']) && $visitor->full_name !== $data['full_name']) {
+                $visitor->update(['full_name' => $data['full_name']]);
+            }
+
+            $visitorId = $visitor->id;
+        } elseif (!empty($data['full_name'])) {
+            $visitor = Visitor::create([
+                'tenant_id' => $host->tenant_id,
+                'full_name' => $data['full_name'],
+                'phone_number' => null,
+            ]);
             $visitorId = $visitor->id;
         }
 
